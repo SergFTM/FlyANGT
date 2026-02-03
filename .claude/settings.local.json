@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\user\\Desktop\\FlyANGT\\src\\routes\\workflow"
+    ]
+  }
+}

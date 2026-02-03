@@ -1,0 +1,84 @@
+/**
+ * Design Tokens
+ *
+ * CSS variables for consistent styling across the platform.
+ * Light mode only for MVP.
+ */
+
+:root {
+  /* Spacing scale */
+  --s-1: 0.25rem;   /* 4px */
+  --s-2: 0.5rem;    /* 8px */
+  --s-3: 0.75rem;   /* 12px */
+  --s-4: 1rem;      /* 16px */
+  --s-5: 1.5rem;    /* 24px */
+  --s-6: 2rem;      /* 32px */
+  --s-7: 3rem;      /* 48px */
+  --s-8: 4rem;      /* 64px */
+
+  /* Border radius */
+  --r-1: 0.25rem;   /* 4px */
+  --r-2: 0.5rem;    /* 8px */
+  --r-3: 0.75rem;   /* 12px */
+  --r-4: 1rem;      /* 16px */
+
+  /* Shadows */
+  --sh-1: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --sh-2: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --sh-3: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+  /* Font sizes */
+  --fs-xs: 0.75rem;   /* 12px */
+  --fs-sm: 0.875rem;  /* 14px */
+  --fs-base: 1rem;    /* 16px */
+  --fs-lg: 1.125rem;  /* 18px */
+  --fs-xl: 1.25rem;   /* 20px */
+  --fs-2xl: 1.5rem;   /* 24px */
+  --fs-3xl: 1.875rem; /* 30px */
+
+  /* Colors - Background */
+  --c-bg: #ffffff;
+  --c-surface: #f8fafc;
+  --c-surface-alt: #f1f5f9;
+
+  /* Colors - Text */
+  --c-text: #1e293b;
+  --c-text-secondary: #475569;
+  --c-muted: #64748b;
+  --c-placeholder: #94a3b8;
+
+  /* Colors - Border */
+  --c-border: #e2e8f0;
+  --c-border-hover: #cbd5e1;
+  --c-border-focus: #3b82f6;
+
+  /* Colors - Primary */
+  --c-primary: #2563eb;
+  --c-primary-hover: #1d4ed8;
+  --c-primary-text: #ffffff;
+  --c-primary-light: #dbeafe;
+
+  /* Colors - Secondary */
+  --c-secondary: #64748b;
+  --c-secondary-hover: #475569;
+  --c-secondary-text: #ffffff;
+
+  /* Colors - Status */
+  --c-success: #16a34a;
+  --c-success-light: #dcfce7;
+  --c-success-text: #166534;
+  --c-warning: #eab308;
+  --c-warning-light: #fef9c3;
+  --c-warning-text: #854d0e;
+  --c-danger: #dc2626;
+  --c-danger-light: #fee2e2;
+  --c-danger-text: #991b1b;
+  --c-info: #0ea5e9;
+  --c-info-light: #e0f2fe;
+  --c-info-text: #0369a1;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+}

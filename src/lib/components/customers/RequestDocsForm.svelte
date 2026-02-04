@@ -4,6 +4,7 @@
    *
    * Form for requesting documentation with localStorage persistence.
    * Respects prelaunch lock mode for draft storage.
+   * Submits to /api/leads with source='customers_docs'.
    */
 
   import { prelaunchConfig } from '$config/prelaunch.config';
@@ -34,6 +35,12 @@
     invalidEmailLabel: string;
     storageKey: string;
     draftsBlockedMessage?: string;
+    locale?: 'en' | 'ru';
+    // i18n labels for submission
+    sendingLabel?: string;
+    submitErrorLabel?: string;
+    retryLabel?: string;
+    referenceIdLabel?: string;
   }
 
   let {
@@ -49,6 +56,11 @@
     invalidEmailLabel,
     storageKey,
     draftsBlockedMessage = 'Draft saving is disabled.',
+    locale = 'en',
+    sendingLabel = 'Sending...',
+    submitErrorLabel = 'Failed to submit. Please try again.',
+    retryLabel = 'Retry',
+    referenceIdLabel = 'Reference ID',
   }: Props = $props();
 
   // Resolve storage key based on prelaunch mode
@@ -65,6 +77,9 @@
 
   // UI state
   let submitted = $state(false);
+  let submitting = $state(false);
+  let submitError = $state<string | null>(null);
+  let submittedId = $state<string | null>(null);
   let errors = $state<Record<string, string>>({});
 
   // Load from localStorage on mount
@@ -81,6 +96,7 @@
           interest = data.interest || '';
           notes = data.notes || '';
           submitted = data.submitted || false;
+          submittedId = data.submittedId || null;
         } catch {
           // Invalid stored data, ignore
         }
@@ -114,30 +130,71 @@
     return Object.keys(newErrors).length === 0;
   }
 
-  function handleSubmit(e: Event) {
+  async function handleSubmit(e: Event) {
     e.preventDefault();
 
     if (!validate()) {
       return;
     }
 
-    // Save to localStorage (respects lock mode)
-    const data = {
-      name,
-      email,
-      phone,
-      country,
-      interest,
-      notes,
-      submitted: true,
-      submittedAt: new Date().toISOString(),
-    };
+    // Reset error state
+    submitError = null;
+    submitting = true;
 
-    if (typeof window !== 'undefined' && !draftsBlocked) {
-      localStorage.setItem(effectiveStorageKey, JSON.stringify(data));
+    try {
+      // Submit to API
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          source: 'customers_docs',
+          locale,
+          email,
+          name,
+          phone: phone || undefined,
+          country,
+          interest,
+          notes: notes || undefined,
+          meta: {
+            interestLabel: interestOptions.find(o => o.id === interest)?.label,
+          },
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.errors?.join(', ') || 'Submission failed');
+      }
+
+      // Store the submitted ID
+      submittedId = result.id;
+
+      // Save to localStorage (respects lock mode)
+      const data = {
+        name,
+        email,
+        phone,
+        country,
+        interest,
+        notes,
+        submitted: true,
+        submittedAt: new Date().toISOString(),
+        submittedId: result.id,
+      };
+
+      if (typeof window !== 'undefined' && !draftsBlocked) {
+        localStorage.setItem(effectiveStorageKey, JSON.stringify(data));
+      }
+
+      submitted = true;
+    } catch (err) {
+      submitError = err instanceof Error ? err.message : submitErrorLabel;
+    } finally {
+      submitting = false;
     }
-
-    submitted = true;
   }
 
   function handleEdit() {
@@ -178,7 +235,12 @@
           </svg>
         </div>
         <h2 class="text-2xl font-bold text-gray-900 mb-2">{successTitle}</h2>
-        <p class="text-gray-600 mb-6">{successText}</p>
+        <p class="text-gray-600 mb-4">{successText}</p>
+        {#if submittedId}
+          <p class="text-sm text-gray-500 mb-6">
+            {referenceIdLabel}: <code class="px-2 py-1 bg-gray-100 rounded text-xs">{submittedId}</code>
+          </p>
+        {/if}
         <button
           onclick={handleEdit}
           class="px-4 py-2 text-emerald-600 hover:text-emerald-700 font-medium"
@@ -295,12 +357,20 @@
           ></textarea>
         </div>
 
+        <!-- Error message -->
+        {#if submitError}
+          <div class="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+            {submitError}
+          </div>
+        {/if}
+
         <!-- Submit -->
         <button
           type="submit"
-          class="w-full px-6 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition-colors"
+          disabled={submitting}
+          class="w-full px-6 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {submitLabel}
+          {submitting ? sendingLabel : submitLabel}
         </button>
       </form>
     {/if}

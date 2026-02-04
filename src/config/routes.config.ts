@@ -236,6 +236,70 @@ export const routes: RouteConfig[] = [
     isPublic: false,
     order: 1004,
   },
+  {
+    id: 'rc',
+    path: '/rc',
+    titleKey: 'nav.home', // Not displayed
+    moduleId: null,
+    isPublic: false,
+    order: 1005,
+  },
+  {
+    id: 'rc-compare',
+    path: '/rc-compare',
+    titleKey: 'nav.home', // Not displayed
+    moduleId: null,
+    isPublic: false,
+    order: 1006,
+  },
+  {
+    id: 'changelog',
+    path: '/changelog',
+    titleKey: 'nav.home', // Not displayed
+    moduleId: null,
+    isPublic: false,
+    order: 1007,
+  },
+  {
+    id: 'release-notes',
+    path: '/release-notes',
+    titleKey: 'nav.home', // Not displayed
+    moduleId: null,
+    isPublic: false,
+    order: 1008,
+  },
+  {
+    id: 'publish',
+    path: '/publish',
+    titleKey: 'nav.home', // Not displayed
+    moduleId: null,
+    isPublic: false,
+    order: 1009,
+  },
+  {
+    id: 'post-release',
+    path: '/post-release',
+    titleKey: 'nav.home', // Not displayed
+    moduleId: null,
+    isPublic: false,
+    order: 1010,
+  },
+  {
+    id: 'leads',
+    path: '/leads',
+    titleKey: 'nav.home', // Not displayed
+    moduleId: null,
+    isPublic: false,
+    order: 1011,
+  },
+  {
+    id: 'admin',
+    path: '/admin',
+    titleKey: 'admin.title',
+    moduleId: null,
+    isPublic: false,
+    order: 1012,
+  },
 ];
 
 /**

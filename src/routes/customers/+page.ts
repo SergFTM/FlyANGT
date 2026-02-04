@@ -39,5 +39,12 @@ export const load: PageLoad = ({ url }) => {
     title: `${t('nav.customers', locale)} - FlyANGT`,
     routeId: route?.id ?? 'customers',
     disabledMessage: t('common.moduleDisabled', locale),
+    // Form submission labels
+    formLabels: {
+      sending: t('form.submit.sending', locale),
+      error: t('form.submit.error', locale),
+      retry: t('form.submit.errorRetry', locale),
+      referenceId: t('form.submit.successId', locale),
+    },
   };
 };

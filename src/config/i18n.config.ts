@@ -819,7 +819,283 @@ export type TranslationKey =
   | 'rc.artifact.smoke'
   | 'rc.artifact.gate'
   | 'rc.confirmDelete.title'
-  | 'rc.confirmDelete.text';
+  | 'rc.confirmDelete.text'
+  // RC Compare keys
+  | 'rcCompare.title'
+  | 'rcCompare.subtitle'
+  | 'rcCompare.notice.devOnly'
+  | 'rcCompare.select.a'
+  | 'rcCompare.select.b'
+  | 'rcCompare.actions.swap'
+  | 'rcCompare.actions.export'
+  | 'rcCompare.actions.copy'
+  | 'rcCompare.actions.copyDone'
+  | 'rcCompare.summary.title'
+  | 'rcCompare.summary.changedGroups'
+  | 'rcCompare.summary.totalChanges'
+  | 'rcCompare.group.routes.title'
+  | 'rcCompare.group.modules.title'
+  | 'rcCompare.group.home.title'
+  | 'rcCompare.group.trust.title'
+  | 'rcCompare.group.workflow.title'
+  | 'rcCompare.group.tokenization.title'
+  | 'rcCompare.group.presale.title'
+  | 'rcCompare.group.configurator.title'
+  | 'rcCompare.group.partners.title'
+  | 'rcCompare.group.investors.title'
+  | 'rcCompare.group.customers.title'
+  | 'rcCompare.group.i18n.title'
+  | 'rcCompare.group.release.title'
+  | 'rcCompare.group.smoke.title'
+  | 'rcCompare.group.gate.title'
+  | 'rcCompare.empty.title'
+  | 'rcCompare.empty.text'
+  | 'rcCompare.diff.added'
+  | 'rcCompare.diff.removed'
+  | 'rcCompare.diff.changed'
+  | 'rcCompare.view.showOnlyChanged'
+  | 'rcCompare.view.showAll'
+  // Changelog keys
+  | 'changelog.title'
+  | 'changelog.subtitle'
+  | 'changelog.notice.devOnly'
+  | 'changelog.select.a'
+  | 'changelog.select.b'
+  | 'changelog.actions.swap'
+  | 'changelog.actions.exportMd'
+  | 'changelog.actions.exportJson'
+  | 'changelog.actions.copyEn'
+  | 'changelog.actions.copyRu'
+  | 'changelog.actions.copyDone'
+  | 'changelog.view.languageLabel'
+  | 'changelog.view.showJson'
+  | 'changelog.summary.title'
+  | 'changelog.summary.changedGroups'
+  | 'changelog.summary.totalItems'
+  | 'changelog.template.headerTitle'
+  | 'changelog.template.added'
+  | 'changelog.template.changed'
+  | 'changelog.template.removed'
+  | 'changelog.template.fixed'
+  | 'changelog.template.notes'
+  | 'changelog.template.truncatedNote'
+  | 'changelog.empty.title'
+  | 'changelog.empty.text'
+  | 'changelog.group.routes.title'
+  | 'changelog.group.modules.title'
+  | 'changelog.group.home.title'
+  | 'changelog.group.trust.title'
+  | 'changelog.group.workflow.title'
+  | 'changelog.group.tokenization.title'
+  | 'changelog.group.presale.title'
+  | 'changelog.group.configurator.title'
+  | 'changelog.group.partners.title'
+  | 'changelog.group.investors.title'
+  | 'changelog.group.customers.title'
+  | 'changelog.group.i18n.title'
+  | 'changelog.group.release.title'
+  | 'changelog.group.smoke.title'
+  | 'changelog.group.gate.title'
+  // Release Notes keys
+  | 'releaseNotes.title'
+  | 'releaseNotes.subtitle'
+  | 'releaseNotes.notice.devOnly'
+  | 'releaseNotes.select.a'
+  | 'releaseNotes.select.b'
+  | 'releaseNotes.actions.swap'
+  | 'releaseNotes.actions.exportMd'
+  | 'releaseNotes.actions.exportJson'
+  | 'releaseNotes.actions.copyEn'
+  | 'releaseNotes.actions.copyRu'
+  | 'releaseNotes.actions.copyDone'
+  | 'releaseNotes.view.languageLabel'
+  | 'releaseNotes.sections.meta.title'
+  | 'releaseNotes.sections.readiness.title'
+  | 'releaseNotes.sections.highlights.title'
+  | 'releaseNotes.sections.changelog.title'
+  | 'releaseNotes.sections.quality.title'
+  | 'releaseNotes.sections.knownIssues.title'
+  | 'releaseNotes.sections.links.title'
+  | 'releaseNotes.sections.nextSteps.title'
+  | 'releaseNotes.meta.generatedAt'
+  | 'releaseNotes.meta.fromRc'
+  | 'releaseNotes.meta.toRc'
+  | 'releaseNotes.meta.status'
+  | 'releaseNotes.readiness.overall'
+  | 'releaseNotes.readiness.releaseP0'
+  | 'releaseNotes.readiness.smokeP0'
+  | 'releaseNotes.readiness.i18nMissing'
+  | 'releaseNotes.quality.releaseChecklist'
+  | 'releaseNotes.quality.smokeChecklist'
+  | 'releaseNotes.knownIssues.add'
+  | 'releaseNotes.knownIssues.edit'
+  | 'releaseNotes.knownIssues.delete'
+  | 'releaseNotes.knownIssues.severityLabel'
+  | 'releaseNotes.knownIssues.ownerLabel'
+  | 'releaseNotes.knownIssues.notesPlaceholder'
+  | 'releaseNotes.knownIssues.severity.low'
+  | 'releaseNotes.knownIssues.severity.medium'
+  | 'releaseNotes.knownIssues.severity.high'
+  | 'releaseNotes.knownIssues.empty'
+  | 'releaseNotes.links.open'
+  | 'releaseNotes.nextSteps.placeholder'
+  | 'releaseNotes.highlights.mostChanges'
+  // Publish Center
+  | 'publish.title'
+  | 'publish.subtitle'
+  | 'publish.notice.devOnly'
+  | 'publish.selectRc.label'
+  | 'publish.actions.createPacket'
+  | 'publish.actions.savePacket'
+  | 'publish.actions.loadPacket'
+  | 'publish.actions.deletePacket'
+  | 'publish.actions.download'
+  | 'publish.actions.downloadAll'
+  | 'publish.actions.copy'
+  | 'publish.actions.copyDone'
+  | 'publish.actions.generate'
+  | 'publish.actions.regenerate'
+  | 'publish.section.packet.title'
+  | 'publish.section.files.title'
+  | 'publish.section.checklist.title'
+  | 'publish.section.deployment.title'
+  | 'publish.section.savedPackets.title'
+  | 'publish.file.rc_bundle.title'
+  | 'publish.file.rc_snapshot.title'
+  | 'publish.file.rc_gate.title'
+  | 'publish.file.rc_release.title'
+  | 'publish.file.rc_smoke.title'
+  | 'publish.file.release_notes_en_md.title'
+  | 'publish.file.release_notes_ru_md.title'
+  | 'publish.file.release_notes_en_json.title'
+  | 'publish.file.release_notes_ru_json.title'
+  | 'publish.file.manifest.title'
+  | 'publish.file.deployment_steps_en.title'
+  | 'publish.file.deployment_steps_ru.title'
+  | 'publish.file.publish_checklist.title'
+  | 'publish.check.gate_green.title'
+  | 'publish.check.smoke_p0_pass.title'
+  | 'publish.check.release_p0_done.title'
+  | 'publish.check.i18n_complete.title'
+  | 'publish.check.changelog_reviewed.title'
+  | 'publish.check.release_notes_reviewed.title'
+  | 'publish.check.known_issues_documented.title'
+  | 'publish.check.deployment_steps_verified.title'
+  | 'publish.check.backup_created.title'
+  | 'publish.check.stakeholders_notified.title'
+  | 'publish.check.rollback_plan_ready.title'
+  | 'publish.check.monitoring_configured.title'
+  | 'publish.check.docs_updated.title'
+  | 'publish.check.final_approval.title'
+  | 'publish.priority.p0'
+  | 'publish.priority.p1'
+  | 'publish.priority.p2'
+  | 'publish.deploy.step1.en'
+  | 'publish.deploy.step1.ru'
+  | 'publish.deploy.step2.en'
+  | 'publish.deploy.step2.ru'
+  | 'publish.deploy.step3.en'
+  | 'publish.deploy.step3.ru'
+  | 'publish.deploy.step4.en'
+  | 'publish.deploy.step4.ru'
+  | 'publish.deploy.step5.en'
+  | 'publish.deploy.step5.ru'
+  | 'publish.deploy.step6.en'
+  | 'publish.deploy.step6.ru'
+  | 'publish.packet.name.label'
+  | 'publish.packet.name.placeholder'
+  | 'publish.packet.created.label'
+  | 'publish.packet.status.draft'
+  | 'publish.packet.status.ready'
+  | 'publish.packet.status.published'
+  | 'publish.savedPackets.empty'
+  | 'publish.savedPackets.load'
+  | 'publish.savedPackets.delete'
+  | 'publish.manifest.version'
+  | 'publish.manifest.buildDate'
+  | 'publish.manifest.rcFrom'
+  | 'publish.manifest.rcTo'
+  // Post Release
+  | 'postRelease.title'
+  | 'postRelease.subtitle'
+  | 'postRelease.notice.devOnly'
+  | 'postRelease.selectPacket.label'
+  | 'postRelease.actions.newReport'
+  | 'postRelease.actions.save'
+  | 'postRelease.actions.delete'
+  | 'postRelease.actions.exportMd'
+  | 'postRelease.actions.exportJson'
+  | 'postRelease.actions.copyEn'
+  | 'postRelease.actions.copyRu'
+  | 'postRelease.actions.copyDone'
+  | 'postRelease.view.languageLabel'
+  | 'postRelease.sections.meta.title'
+  | 'postRelease.sections.deployment.title'
+  | 'postRelease.sections.readiness.title'
+  | 'postRelease.sections.issues.title'
+  | 'postRelease.sections.incidents.title'
+  | 'postRelease.sections.actions.title'
+  | 'postRelease.sections.notes.title'
+  | 'postRelease.fields.releaseDate'
+  | 'postRelease.fields.environment'
+  | 'postRelease.fields.deployUrl'
+  | 'postRelease.fields.tagOrCommit'
+  | 'postRelease.fields.gateStatus'
+  | 'postRelease.fields.issuesFound'
+  | 'postRelease.fields.incidents'
+  | 'postRelease.fields.actionItems'
+  | 'postRelease.fields.owner'
+  | 'postRelease.fields.due'
+  | 'postRelease.fields.notes'
+  | 'postRelease.status.green'
+  | 'postRelease.status.yellow'
+  | 'postRelease.status.red'
+  | 'postRelease.env.prod'
+  | 'postRelease.env.staging'
+  | 'postRelease.list.title'
+  | 'postRelease.list.empty.title'
+  | 'postRelease.list.empty.text'
+  | 'postRelease.placeholder.none'
+  // Form Submission
+  | 'form.submit.sending'
+  | 'form.submit.success'
+  | 'form.submit.successId'
+  | 'form.submit.error'
+  | 'form.submit.errorRetry'
+  | 'form.submit.button'
+  | 'form.submit.submitting'
+  | 'form.validation.emailRequired'
+  | 'form.validation.emailInvalid'
+  // Admin Viewer
+  | 'admin.title'
+  | 'admin.subtitle'
+  | 'admin.notice.devOnly'
+  | 'admin.tabs.leads'
+  | 'admin.tabs.requests'
+  | 'admin.filters.source'
+  | 'admin.filters.search'
+  | 'admin.filters.limit'
+  | 'admin.actions.export'
+  | 'admin.actions.copy'
+  | 'admin.actions.copyDone'
+  | 'admin.actions.openApiLeads'
+  | 'admin.actions.openApiRequests'
+  | 'admin.list.empty.title'
+  | 'admin.list.empty.text'
+  | 'admin.detail.title'
+  | 'admin.detail.rawJson'
+  | 'admin.fields.id'
+  | 'admin.fields.createdAt'
+  | 'admin.fields.updatedAt'
+  | 'admin.fields.source'
+  | 'admin.fields.email'
+  | 'admin.fields.name'
+  | 'admin.fields.phone'
+  | 'admin.sources.presale'
+  | 'admin.sources.configurator_quote'
+  | 'admin.sources.partners'
+  | 'admin.sources.investors_deck'
+  | 'admin.sources.customers_docs';
 
 /**
  * Translation dictionary
@@ -1634,6 +1910,285 @@ export const translations: Record<Locale, Record<TranslationKey, string>> = {
     'rc.artifact.gate': 'Gate Summary',
     'rc.confirmDelete.title': 'Delete RC?',
     'rc.confirmDelete.text': 'This action cannot be undone.',
+
+    // RC Compare
+    'rcCompare.title': 'RC Compare',
+    'rcCompare.subtitle': 'Compare differences between release candidates',
+    'rcCompare.notice.devOnly': 'Dev tool only. Compares stored RC artifacts.',
+    'rcCompare.select.a': 'RC A',
+    'rcCompare.select.b': 'RC B',
+    'rcCompare.actions.swap': 'Swap',
+    'rcCompare.actions.export': 'Export Diff',
+    'rcCompare.actions.copy': 'Copy',
+    'rcCompare.actions.copyDone': 'Copied',
+    'rcCompare.summary.title': 'Comparison Summary',
+    'rcCompare.summary.changedGroups': 'Changed Groups',
+    'rcCompare.summary.totalChanges': 'Total Changes',
+    'rcCompare.group.routes.title': 'Routes',
+    'rcCompare.group.modules.title': 'Modules',
+    'rcCompare.group.home.title': 'Home',
+    'rcCompare.group.trust.title': 'Trust Center',
+    'rcCompare.group.workflow.title': 'Workflow',
+    'rcCompare.group.tokenization.title': 'Tokenization',
+    'rcCompare.group.presale.title': 'Presale',
+    'rcCompare.group.configurator.title': 'Configurator',
+    'rcCompare.group.partners.title': 'Partners',
+    'rcCompare.group.investors.title': 'Investors',
+    'rcCompare.group.customers.title': 'Customers',
+    'rcCompare.group.i18n.title': 'i18n',
+    'rcCompare.group.release.title': 'Release State',
+    'rcCompare.group.smoke.title': 'Smoke State',
+    'rcCompare.group.gate.title': 'Gate Summary',
+    'rcCompare.empty.title': 'Select Two RCs',
+    'rcCompare.empty.text': 'Select two release candidates to compare.',
+    'rcCompare.diff.added': 'Added',
+    'rcCompare.diff.removed': 'Removed',
+    'rcCompare.diff.changed': 'Changed',
+    'rcCompare.view.showOnlyChanged': 'Show Only Changed',
+    'rcCompare.view.showAll': 'Show All Groups',
+
+    // Changelog
+    'changelog.title': 'Changelog Generator',
+    'changelog.subtitle': 'Generate release notes from RC differences',
+    'changelog.notice.devOnly': 'Dev tool only. Deterministic transformation.',
+    'changelog.select.a': 'From RC',
+    'changelog.select.b': 'To RC',
+    'changelog.actions.swap': 'Swap',
+    'changelog.actions.exportMd': 'Export MD',
+    'changelog.actions.exportJson': 'Export JSON',
+    'changelog.actions.copyEn': 'Copy EN',
+    'changelog.actions.copyRu': 'Copy RU',
+    'changelog.actions.copyDone': 'Copied',
+    'changelog.view.languageLabel': 'Preview Language',
+    'changelog.view.showJson': 'Show JSON',
+    'changelog.summary.title': 'Summary',
+    'changelog.summary.changedGroups': 'Changed Groups',
+    'changelog.summary.totalItems': 'Total Items',
+    'changelog.template.headerTitle': 'Changelog',
+    'changelog.template.added': 'Added',
+    'changelog.template.changed': 'Changed',
+    'changelog.template.removed': 'Removed',
+    'changelog.template.fixed': 'Fixed',
+    'changelog.template.notes': 'Notes',
+    'changelog.template.truncatedNote': '... and more items',
+    'changelog.empty.title': 'Select Two RCs',
+    'changelog.empty.text': 'Select two release candidates to generate changelog.',
+    'changelog.group.routes.title': 'Routes',
+    'changelog.group.modules.title': 'Modules',
+    'changelog.group.home.title': 'Home',
+    'changelog.group.trust.title': 'Trust Center',
+    'changelog.group.workflow.title': 'Workflow',
+    'changelog.group.tokenization.title': 'Tokenization',
+    'changelog.group.presale.title': 'Presale',
+    'changelog.group.configurator.title': 'Configurator',
+    'changelog.group.partners.title': 'Partners',
+    'changelog.group.investors.title': 'Investors',
+    'changelog.group.customers.title': 'Customers',
+    'changelog.group.i18n.title': 'Translations',
+    'changelog.group.release.title': 'Release State',
+    'changelog.group.smoke.title': 'Smoke Tests',
+    'changelog.group.gate.title': 'Gate Status',
+
+    // Release Notes
+    'releaseNotes.title': 'Release Notes Pack',
+    'releaseNotes.subtitle': 'Generate complete release documentation',
+    'releaseNotes.notice.devOnly': 'Dev tool only. Deterministic template.',
+    'releaseNotes.select.a': 'From RC',
+    'releaseNotes.select.b': 'To RC',
+    'releaseNotes.actions.swap': 'Swap',
+    'releaseNotes.actions.exportMd': 'Export MD',
+    'releaseNotes.actions.exportJson': 'Export JSON',
+    'releaseNotes.actions.copyEn': 'Copy EN',
+    'releaseNotes.actions.copyRu': 'Copy RU',
+    'releaseNotes.actions.copyDone': 'Copied',
+    'releaseNotes.view.languageLabel': 'Preview Language',
+    'releaseNotes.sections.meta.title': 'Meta',
+    'releaseNotes.sections.readiness.title': 'Readiness',
+    'releaseNotes.sections.highlights.title': 'Highlights',
+    'releaseNotes.sections.changelog.title': 'Changelog',
+    'releaseNotes.sections.quality.title': 'Quality Summary',
+    'releaseNotes.sections.knownIssues.title': 'Known Issues',
+    'releaseNotes.sections.links.title': 'Links',
+    'releaseNotes.sections.nextSteps.title': 'Next Steps',
+    'releaseNotes.meta.generatedAt': 'Generated',
+    'releaseNotes.meta.fromRc': 'From RC',
+    'releaseNotes.meta.toRc': 'To RC',
+    'releaseNotes.meta.status': 'Status',
+    'releaseNotes.readiness.overall': 'Overall Status',
+    'releaseNotes.readiness.releaseP0': 'Release P0',
+    'releaseNotes.readiness.smokeP0': 'Smoke P0',
+    'releaseNotes.readiness.i18nMissing': 'i18n Missing',
+    'releaseNotes.quality.releaseChecklist': 'Release Checklist',
+    'releaseNotes.quality.smokeChecklist': 'Smoke Tests',
+    'releaseNotes.knownIssues.add': 'Add Issue',
+    'releaseNotes.knownIssues.edit': 'Edit',
+    'releaseNotes.knownIssues.delete': 'Delete',
+    'releaseNotes.knownIssues.severityLabel': 'Severity',
+    'releaseNotes.knownIssues.ownerLabel': 'Owner',
+    'releaseNotes.knownIssues.notesPlaceholder': 'Additional notes...',
+    'releaseNotes.knownIssues.severity.low': 'Low',
+    'releaseNotes.knownIssues.severity.medium': 'Medium',
+    'releaseNotes.knownIssues.severity.high': 'High',
+    'releaseNotes.knownIssues.empty': 'No known issues',
+    'releaseNotes.links.open': 'Open',
+    'releaseNotes.nextSteps.placeholder': 'Review release notes with team before publishing.',
+    'releaseNotes.highlights.mostChanges': 'Most changes in',
+    // Publish Center
+    'publish.title': 'Publish Center',
+    'publish.subtitle': 'Assemble and manage publish packets',
+    'publish.notice.devOnly': 'Development tool — disabled in production',
+    'publish.selectRc.label': 'Select RC Version',
+    'publish.actions.createPacket': 'Create Packet',
+    'publish.actions.savePacket': 'Save Packet',
+    'publish.actions.loadPacket': 'Load Packet',
+    'publish.actions.deletePacket': 'Delete Packet',
+    'publish.actions.download': 'Download',
+    'publish.actions.downloadAll': 'Download All',
+    'publish.actions.copy': 'Copy',
+    'publish.actions.copyDone': 'Copied!',
+    'publish.actions.generate': 'Generate',
+    'publish.actions.regenerate': 'Regenerate',
+    'publish.section.packet.title': 'Packet Info',
+    'publish.section.files.title': 'Publish Files',
+    'publish.section.checklist.title': 'Publish Checklist',
+    'publish.section.deployment.title': 'Deployment Steps',
+    'publish.section.savedPackets.title': 'Saved Packets',
+    'publish.file.rc_bundle.title': 'RC Bundle (Full)',
+    'publish.file.rc_snapshot.title': 'RC Snapshot',
+    'publish.file.rc_gate.title': 'Gate Status',
+    'publish.file.rc_release.title': 'Release Checklist',
+    'publish.file.rc_smoke.title': 'Smoke Tests',
+    'publish.file.release_notes_en_md.title': 'Release Notes (EN, Markdown)',
+    'publish.file.release_notes_ru_md.title': 'Release Notes (RU, Markdown)',
+    'publish.file.release_notes_en_json.title': 'Release Notes (EN, JSON)',
+    'publish.file.release_notes_ru_json.title': 'Release Notes (RU, JSON)',
+    'publish.file.manifest.title': 'Publish Manifest',
+    'publish.file.deployment_steps_en.title': 'Deployment Steps (EN)',
+    'publish.file.deployment_steps_ru.title': 'Deployment Steps (RU)',
+    'publish.file.publish_checklist.title': 'Publish Checklist',
+    'publish.check.gate_green.title': 'Gate status is GREEN',
+    'publish.check.smoke_p0_pass.title': 'All Smoke P0 tests pass',
+    'publish.check.release_p0_done.title': 'All Release P0 items done',
+    'publish.check.i18n_complete.title': 'All i18n translations complete',
+    'publish.check.changelog_reviewed.title': 'Changelog reviewed by team',
+    'publish.check.release_notes_reviewed.title': 'Release notes reviewed',
+    'publish.check.known_issues_documented.title': 'Known issues documented',
+    'publish.check.deployment_steps_verified.title': 'Deployment steps verified',
+    'publish.check.backup_created.title': 'Production backup created',
+    'publish.check.stakeholders_notified.title': 'Stakeholders notified',
+    'publish.check.rollback_plan_ready.title': 'Rollback plan ready',
+    'publish.check.monitoring_configured.title': 'Monitoring configured',
+    'publish.check.docs_updated.title': 'Documentation updated',
+    'publish.check.final_approval.title': 'Final approval received',
+    'publish.priority.p0': 'P0',
+    'publish.priority.p1': 'P1',
+    'publish.priority.p2': 'P2',
+    'publish.deploy.step1.en': '1. Create production backup',
+    'publish.deploy.step1.ru': '1. Создать резервную копию продакшена',
+    'publish.deploy.step2.en': '2. Deploy to staging environment',
+    'publish.deploy.step2.ru': '2. Развернуть на staging-окружении',
+    'publish.deploy.step3.en': '3. Run smoke tests on staging',
+    'publish.deploy.step3.ru': '3. Запустить дымовые тесты на staging',
+    'publish.deploy.step4.en': '4. Deploy to production',
+    'publish.deploy.step4.ru': '4. Развернуть на продакшене',
+    'publish.deploy.step5.en': '5. Verify production deployment',
+    'publish.deploy.step5.ru': '5. Проверить развёртывание на продакшене',
+    'publish.deploy.step6.en': '6. Notify stakeholders of release',
+    'publish.deploy.step6.ru': '6. Уведомить стейкхолдеров о релизе',
+    'publish.packet.name.label': 'Packet Name',
+    'publish.packet.name.placeholder': 'Enter packet name...',
+    'publish.packet.created.label': 'Created',
+    'publish.packet.status.draft': 'Draft',
+    'publish.packet.status.ready': 'Ready',
+    'publish.packet.status.published': 'Published',
+    'publish.savedPackets.empty': 'No saved packets',
+    'publish.savedPackets.load': 'Load',
+    'publish.savedPackets.delete': 'Delete',
+    'publish.manifest.version': 'Version',
+    'publish.manifest.buildDate': 'Build Date',
+    'publish.manifest.rcFrom': 'From RC',
+    'publish.manifest.rcTo': 'To RC',
+    // Post Release
+    'postRelease.title': 'Post Release Report',
+    'postRelease.subtitle': 'Generate post-release reports from publish packets',
+    'postRelease.notice.devOnly': 'Development tool - disabled in production',
+    'postRelease.selectPacket.label': 'Select Publish Packet',
+    'postRelease.actions.newReport': 'New Report',
+    'postRelease.actions.save': 'Save',
+    'postRelease.actions.delete': 'Delete',
+    'postRelease.actions.exportMd': 'Export MD',
+    'postRelease.actions.exportJson': 'Export JSON',
+    'postRelease.actions.copyEn': 'Copy EN',
+    'postRelease.actions.copyRu': 'Copy RU',
+    'postRelease.actions.copyDone': 'Copied!',
+    'postRelease.view.languageLabel': 'Preview language',
+    'postRelease.sections.meta.title': 'Meta',
+    'postRelease.sections.deployment.title': 'Deployment',
+    'postRelease.sections.readiness.title': 'Readiness',
+    'postRelease.sections.issues.title': 'Issues Found',
+    'postRelease.sections.incidents.title': 'Incidents',
+    'postRelease.sections.actions.title': 'Action Items',
+    'postRelease.sections.notes.title': 'Notes',
+    'postRelease.fields.releaseDate': 'Release Date',
+    'postRelease.fields.environment': 'Environment',
+    'postRelease.fields.deployUrl': 'Deploy URL',
+    'postRelease.fields.tagOrCommit': 'Tag or Commit',
+    'postRelease.fields.gateStatus': 'Actual Gate Status',
+    'postRelease.fields.issuesFound': 'Issues Found',
+    'postRelease.fields.incidents': 'Incidents',
+    'postRelease.fields.actionItems': 'Action Items',
+    'postRelease.fields.owner': 'Owner',
+    'postRelease.fields.due': 'Due',
+    'postRelease.fields.notes': 'Notes',
+    'postRelease.status.green': 'Green',
+    'postRelease.status.yellow': 'Yellow',
+    'postRelease.status.red': 'Red',
+    'postRelease.env.prod': 'Production',
+    'postRelease.env.staging': 'Staging',
+    'postRelease.list.title': 'Saved Reports',
+    'postRelease.list.empty.title': 'No reports',
+    'postRelease.list.empty.text': 'Create a report from a publish packet to get started.',
+    'postRelease.placeholder.none': 'none',
+    // Form Submission
+    'form.submit.sending': 'Sending...',
+    'form.submit.success': 'Successfully submitted!',
+    'form.submit.successId': 'Reference ID',
+    'form.submit.error': 'Failed to submit. Please try again.',
+    'form.submit.errorRetry': 'Retry',
+    'form.submit.button': 'Submit',
+    'form.submit.submitting': 'Submitting...',
+    'form.validation.emailRequired': 'Email is required',
+    'form.validation.emailInvalid': 'Please enter a valid email',
+    // Admin Viewer
+    'admin.title': 'Admin Viewer',
+    'admin.subtitle': 'View and export leads and requests',
+    'admin.notice.devOnly': 'Dev Only: This page is not available in production.',
+    'admin.tabs.leads': 'Leads',
+    'admin.tabs.requests': 'Requests',
+    'admin.filters.source': 'Source',
+    'admin.filters.search': 'Search',
+    'admin.filters.limit': 'Limit',
+    'admin.actions.export': 'Export JSON',
+    'admin.actions.copy': 'Copy JSON',
+    'admin.actions.copyDone': 'Copied!',
+    'admin.actions.openApiLeads': 'Open Leads API',
+    'admin.actions.openApiRequests': 'Open Requests API',
+    'admin.list.empty.title': 'No Records',
+    'admin.list.empty.text': 'No records found matching your criteria.',
+    'admin.detail.title': 'Record Details',
+    'admin.detail.rawJson': 'Raw JSON',
+    'admin.fields.id': 'ID',
+    'admin.fields.createdAt': 'Created',
+    'admin.fields.updatedAt': 'Updated',
+    'admin.fields.source': 'Source',
+    'admin.fields.email': 'Email',
+    'admin.fields.name': 'Name',
+    'admin.fields.phone': 'Phone',
+    'admin.sources.presale': 'Presale',
+    'admin.sources.configurator_quote': 'Configurator Quote',
+    'admin.sources.partners': 'Partners',
+    'admin.sources.investors_deck': 'Investors Deck',
+    'admin.sources.customers_docs': 'Customers Docs',
   },
   ru: {
     // Navigation
@@ -2444,6 +2999,285 @@ export const translations: Record<Locale, Record<TranslationKey, string>> = {
     'rc.artifact.gate': 'Сводка Gate',
     'rc.confirmDelete.title': 'Удалить RC?',
     'rc.confirmDelete.text': 'Это действие нельзя отменить.',
+
+    // RC Compare
+    'rcCompare.title': 'Сравнение RC',
+    'rcCompare.subtitle': 'Сравнение различий между релиз-кандидатами',
+    'rcCompare.notice.devOnly': 'Только для разработки. Сравнивает сохраненные артефакты RC.',
+    'rcCompare.select.a': 'RC A',
+    'rcCompare.select.b': 'RC B',
+    'rcCompare.actions.swap': 'Поменять',
+    'rcCompare.actions.export': 'Экспорт различий',
+    'rcCompare.actions.copy': 'Копировать',
+    'rcCompare.actions.copyDone': 'Скопировано',
+    'rcCompare.summary.title': 'Сводка сравнения',
+    'rcCompare.summary.changedGroups': 'Измененные группы',
+    'rcCompare.summary.totalChanges': 'Всего изменений',
+    'rcCompare.group.routes.title': 'Маршруты',
+    'rcCompare.group.modules.title': 'Модули',
+    'rcCompare.group.home.title': 'Главная',
+    'rcCompare.group.trust.title': 'Центр доверия',
+    'rcCompare.group.workflow.title': 'Процесс',
+    'rcCompare.group.tokenization.title': 'Токенизация',
+    'rcCompare.group.presale.title': 'Пресейл',
+    'rcCompare.group.configurator.title': 'Конфигуратор',
+    'rcCompare.group.partners.title': 'Партнеры',
+    'rcCompare.group.investors.title': 'Инвесторы',
+    'rcCompare.group.customers.title': 'Клиенты',
+    'rcCompare.group.i18n.title': 'i18n',
+    'rcCompare.group.release.title': 'Состояние релиза',
+    'rcCompare.group.smoke.title': 'Состояние тестов',
+    'rcCompare.group.gate.title': 'Сводка Gate',
+    'rcCompare.empty.title': 'Выберите два RC',
+    'rcCompare.empty.text': 'Выберите два релиз-кандидата для сравнения.',
+    'rcCompare.diff.added': 'Добавлено',
+    'rcCompare.diff.removed': 'Удалено',
+    'rcCompare.diff.changed': 'Изменено',
+    'rcCompare.view.showOnlyChanged': 'Только измененные',
+    'rcCompare.view.showAll': 'Показать все группы',
+
+    // Changelog
+    'changelog.title': 'Генератор журнала изменений',
+    'changelog.subtitle': 'Создание заметок о релизе из различий RC',
+    'changelog.notice.devOnly': 'Только для разработки. Детерминированное преобразование.',
+    'changelog.select.a': 'От RC',
+    'changelog.select.b': 'До RC',
+    'changelog.actions.swap': 'Поменять',
+    'changelog.actions.exportMd': 'Экспорт MD',
+    'changelog.actions.exportJson': 'Экспорт JSON',
+    'changelog.actions.copyEn': 'Копировать EN',
+    'changelog.actions.copyRu': 'Копировать RU',
+    'changelog.actions.copyDone': 'Скопировано',
+    'changelog.view.languageLabel': 'Язык предпросмотра',
+    'changelog.view.showJson': 'Показать JSON',
+    'changelog.summary.title': 'Сводка',
+    'changelog.summary.changedGroups': 'Измененные группы',
+    'changelog.summary.totalItems': 'Всего элементов',
+    'changelog.template.headerTitle': 'Журнал изменений',
+    'changelog.template.added': 'Добавлено',
+    'changelog.template.changed': 'Изменено',
+    'changelog.template.removed': 'Удалено',
+    'changelog.template.fixed': 'Исправлено',
+    'changelog.template.notes': 'Заметки',
+    'changelog.template.truncatedNote': '... и другие элементы',
+    'changelog.empty.title': 'Выберите два RC',
+    'changelog.empty.text': 'Выберите два релиз-кандидата для генерации журнала.',
+    'changelog.group.routes.title': 'Маршруты',
+    'changelog.group.modules.title': 'Модули',
+    'changelog.group.home.title': 'Главная',
+    'changelog.group.trust.title': 'Центр доверия',
+    'changelog.group.workflow.title': 'Процесс',
+    'changelog.group.tokenization.title': 'Токенизация',
+    'changelog.group.presale.title': 'Пресейл',
+    'changelog.group.configurator.title': 'Конфигуратор',
+    'changelog.group.partners.title': 'Партнеры',
+    'changelog.group.investors.title': 'Инвесторы',
+    'changelog.group.customers.title': 'Клиенты',
+    'changelog.group.i18n.title': 'Переводы',
+    'changelog.group.release.title': 'Состояние релиза',
+    'changelog.group.smoke.title': 'Дымовые тесты',
+    'changelog.group.gate.title': 'Статус шлюза',
+
+    // Release Notes
+    'releaseNotes.title': 'Пакет заметок о релизе',
+    'releaseNotes.subtitle': 'Генерация полной документации релиза',
+    'releaseNotes.notice.devOnly': 'Только для разработки. Детерминированный шаблон.',
+    'releaseNotes.select.a': 'От RC',
+    'releaseNotes.select.b': 'До RC',
+    'releaseNotes.actions.swap': 'Поменять',
+    'releaseNotes.actions.exportMd': 'Экспорт MD',
+    'releaseNotes.actions.exportJson': 'Экспорт JSON',
+    'releaseNotes.actions.copyEn': 'Копировать EN',
+    'releaseNotes.actions.copyRu': 'Копировать RU',
+    'releaseNotes.actions.copyDone': 'Скопировано',
+    'releaseNotes.view.languageLabel': 'Язык предпросмотра',
+    'releaseNotes.sections.meta.title': 'Мета',
+    'releaseNotes.sections.readiness.title': 'Готовность',
+    'releaseNotes.sections.highlights.title': 'Основные изменения',
+    'releaseNotes.sections.changelog.title': 'Журнал изменений',
+    'releaseNotes.sections.quality.title': 'Сводка качества',
+    'releaseNotes.sections.knownIssues.title': 'Известные проблемы',
+    'releaseNotes.sections.links.title': 'Ссылки',
+    'releaseNotes.sections.nextSteps.title': 'Следующие шаги',
+    'releaseNotes.meta.generatedAt': 'Сгенерировано',
+    'releaseNotes.meta.fromRc': 'От RC',
+    'releaseNotes.meta.toRc': 'До RC',
+    'releaseNotes.meta.status': 'Статус',
+    'releaseNotes.readiness.overall': 'Общий статус',
+    'releaseNotes.readiness.releaseP0': 'Релиз P0',
+    'releaseNotes.readiness.smokeP0': 'Дымовые P0',
+    'releaseNotes.readiness.i18nMissing': 'Отсутствуют i18n',
+    'releaseNotes.quality.releaseChecklist': 'Чеклист релиза',
+    'releaseNotes.quality.smokeChecklist': 'Дымовые тесты',
+    'releaseNotes.knownIssues.add': 'Добавить проблему',
+    'releaseNotes.knownIssues.edit': 'Редактировать',
+    'releaseNotes.knownIssues.delete': 'Удалить',
+    'releaseNotes.knownIssues.severityLabel': 'Критичность',
+    'releaseNotes.knownIssues.ownerLabel': 'Ответственный',
+    'releaseNotes.knownIssues.notesPlaceholder': 'Дополнительные заметки...',
+    'releaseNotes.knownIssues.severity.low': 'Низкая',
+    'releaseNotes.knownIssues.severity.medium': 'Средняя',
+    'releaseNotes.knownIssues.severity.high': 'Высокая',
+    'releaseNotes.knownIssues.empty': 'Нет известных проблем',
+    'releaseNotes.links.open': 'Открыть',
+    'releaseNotes.nextSteps.placeholder': 'Проверьте заметки о релизе с командой перед публикацией.',
+    'releaseNotes.highlights.mostChanges': 'Больше всего изменений в',
+    // Publish Center
+    'publish.title': 'Центр публикации',
+    'publish.subtitle': 'Сборка и управление пакетами публикации',
+    'publish.notice.devOnly': 'Инструмент разработки — отключен в продакшене',
+    'publish.selectRc.label': 'Выберите версию RC',
+    'publish.actions.createPacket': 'Создать пакет',
+    'publish.actions.savePacket': 'Сохранить пакет',
+    'publish.actions.loadPacket': 'Загрузить пакет',
+    'publish.actions.deletePacket': 'Удалить пакет',
+    'publish.actions.download': 'Скачать',
+    'publish.actions.downloadAll': 'Скачать всё',
+    'publish.actions.copy': 'Копировать',
+    'publish.actions.copyDone': 'Скопировано!',
+    'publish.actions.generate': 'Сгенерировать',
+    'publish.actions.regenerate': 'Перегенерировать',
+    'publish.section.packet.title': 'Информация о пакете',
+    'publish.section.files.title': 'Файлы публикации',
+    'publish.section.checklist.title': 'Чеклист публикации',
+    'publish.section.deployment.title': 'Шаги развёртывания',
+    'publish.section.savedPackets.title': 'Сохранённые пакеты',
+    'publish.file.rc_bundle.title': 'RC Bundle (полный)',
+    'publish.file.rc_snapshot.title': 'Снапшот RC',
+    'publish.file.rc_gate.title': 'Статус Gate',
+    'publish.file.rc_release.title': 'Чеклист релиза',
+    'publish.file.rc_smoke.title': 'Дымовые тесты',
+    'publish.file.release_notes_en_md.title': 'Заметки о релизе (EN, Markdown)',
+    'publish.file.release_notes_ru_md.title': 'Заметки о релизе (RU, Markdown)',
+    'publish.file.release_notes_en_json.title': 'Заметки о релизе (EN, JSON)',
+    'publish.file.release_notes_ru_json.title': 'Заметки о релизе (RU, JSON)',
+    'publish.file.manifest.title': 'Манифест публикации',
+    'publish.file.deployment_steps_en.title': 'Шаги развёртывания (EN)',
+    'publish.file.deployment_steps_ru.title': 'Шаги развёртывания (RU)',
+    'publish.file.publish_checklist.title': 'Чеклист публикации',
+    'publish.check.gate_green.title': 'Статус Gate — GREEN',
+    'publish.check.smoke_p0_pass.title': 'Все Smoke P0 тесты пройдены',
+    'publish.check.release_p0_done.title': 'Все Release P0 задачи выполнены',
+    'publish.check.i18n_complete.title': 'Все i18n переводы завершены',
+    'publish.check.changelog_reviewed.title': 'Журнал изменений проверен командой',
+    'publish.check.release_notes_reviewed.title': 'Заметки о релизе проверены',
+    'publish.check.known_issues_documented.title': 'Известные проблемы задокументированы',
+    'publish.check.deployment_steps_verified.title': 'Шаги развёртывания проверены',
+    'publish.check.backup_created.title': 'Резервная копия продакшена создана',
+    'publish.check.stakeholders_notified.title': 'Стейкхолдеры уведомлены',
+    'publish.check.rollback_plan_ready.title': 'План отката готов',
+    'publish.check.monitoring_configured.title': 'Мониторинг настроен',
+    'publish.check.docs_updated.title': 'Документация обновлена',
+    'publish.check.final_approval.title': 'Финальное одобрение получено',
+    'publish.priority.p0': 'P0',
+    'publish.priority.p1': 'P1',
+    'publish.priority.p2': 'P2',
+    'publish.deploy.step1.en': '1. Create production backup',
+    'publish.deploy.step1.ru': '1. Создать резервную копию продакшена',
+    'publish.deploy.step2.en': '2. Deploy to staging environment',
+    'publish.deploy.step2.ru': '2. Развернуть на staging-окружении',
+    'publish.deploy.step3.en': '3. Run smoke tests on staging',
+    'publish.deploy.step3.ru': '3. Запустить дымовые тесты на staging',
+    'publish.deploy.step4.en': '4. Deploy to production',
+    'publish.deploy.step4.ru': '4. Развернуть на продакшене',
+    'publish.deploy.step5.en': '5. Verify production deployment',
+    'publish.deploy.step5.ru': '5. Проверить развёртывание на продакшене',
+    'publish.deploy.step6.en': '6. Notify stakeholders of release',
+    'publish.deploy.step6.ru': '6. Уведомить стейкхолдеров о релизе',
+    'publish.packet.name.label': 'Название пакета',
+    'publish.packet.name.placeholder': 'Введите название пакета...',
+    'publish.packet.created.label': 'Создан',
+    'publish.packet.status.draft': 'Черновик',
+    'publish.packet.status.ready': 'Готов',
+    'publish.packet.status.published': 'Опубликован',
+    'publish.savedPackets.empty': 'Нет сохранённых пакетов',
+    'publish.savedPackets.load': 'Загрузить',
+    'publish.savedPackets.delete': 'Удалить',
+    'publish.manifest.version': 'Версия',
+    'publish.manifest.buildDate': 'Дата сборки',
+    'publish.manifest.rcFrom': 'От RC',
+    'publish.manifest.rcTo': 'До RC',
+    // Post Release
+    'postRelease.title': 'Отчет после релиза',
+    'postRelease.subtitle': 'Генерация отчетов после релиза из пакетов публикации',
+    'postRelease.notice.devOnly': 'Инструмент разработки - отключен в продакшене',
+    'postRelease.selectPacket.label': 'Выберите пакет публикации',
+    'postRelease.actions.newReport': 'Новый отчет',
+    'postRelease.actions.save': 'Сохранить',
+    'postRelease.actions.delete': 'Удалить',
+    'postRelease.actions.exportMd': 'Экспорт MD',
+    'postRelease.actions.exportJson': 'Экспорт JSON',
+    'postRelease.actions.copyEn': 'Копировать EN',
+    'postRelease.actions.copyRu': 'Копировать RU',
+    'postRelease.actions.copyDone': 'Скопировано!',
+    'postRelease.view.languageLabel': 'Язык предпросмотра',
+    'postRelease.sections.meta.title': 'Мета',
+    'postRelease.sections.deployment.title': 'Развертывание',
+    'postRelease.sections.readiness.title': 'Готовность',
+    'postRelease.sections.issues.title': 'Обнаруженные проблемы',
+    'postRelease.sections.incidents.title': 'Инциденты',
+    'postRelease.sections.actions.title': 'Задачи',
+    'postRelease.sections.notes.title': 'Заметки',
+    'postRelease.fields.releaseDate': 'Дата релиза',
+    'postRelease.fields.environment': 'Окружение',
+    'postRelease.fields.deployUrl': 'URL развертывания',
+    'postRelease.fields.tagOrCommit': 'Тег или коммит',
+    'postRelease.fields.gateStatus': 'Фактический статус Gate',
+    'postRelease.fields.issuesFound': 'Обнаруженные проблемы',
+    'postRelease.fields.incidents': 'Инциденты',
+    'postRelease.fields.actionItems': 'Задачи',
+    'postRelease.fields.owner': 'Ответственный',
+    'postRelease.fields.due': 'Срок',
+    'postRelease.fields.notes': 'Заметки',
+    'postRelease.status.green': 'Зеленый',
+    'postRelease.status.yellow': 'Желтый',
+    'postRelease.status.red': 'Красный',
+    'postRelease.env.prod': 'Продакшен',
+    'postRelease.env.staging': 'Стейджинг',
+    'postRelease.list.title': 'Сохраненные отчеты',
+    'postRelease.list.empty.title': 'Нет отчетов',
+    'postRelease.list.empty.text': 'Создайте отчет из пакета публикации, чтобы начать.',
+    'postRelease.placeholder.none': 'нет',
+    // Form Submission
+    'form.submit.sending': 'Отправка...',
+    'form.submit.success': 'Успешно отправлено!',
+    'form.submit.successId': 'Номер заявки',
+    'form.submit.error': 'Не удалось отправить. Попробуйте снова.',
+    'form.submit.errorRetry': 'Повторить',
+    'form.submit.button': 'Отправить',
+    'form.submit.submitting': 'Отправка...',
+    'form.validation.emailRequired': 'Email обязателен',
+    'form.validation.emailInvalid': 'Введите корректный email',
+    // Admin Viewer
+    'admin.title': 'Админ-панель',
+    'admin.subtitle': 'Просмотр и экспорт лидов и заявок',
+    'admin.notice.devOnly': 'Только для разработки: эта страница недоступна в продакшене.',
+    'admin.tabs.leads': 'Лиды',
+    'admin.tabs.requests': 'Заявки',
+    'admin.filters.source': 'Источник',
+    'admin.filters.search': 'Поиск',
+    'admin.filters.limit': 'Лимит',
+    'admin.actions.export': 'Экспорт JSON',
+    'admin.actions.copy': 'Копировать JSON',
+    'admin.actions.copyDone': 'Скопировано!',
+    'admin.actions.openApiLeads': 'Открыть API Лидов',
+    'admin.actions.openApiRequests': 'Открыть API Заявок',
+    'admin.list.empty.title': 'Нет записей',
+    'admin.list.empty.text': 'Записи по указанным критериям не найдены.',
+    'admin.detail.title': 'Детали записи',
+    'admin.detail.rawJson': 'Исходный JSON',
+    'admin.fields.id': 'ID',
+    'admin.fields.createdAt': 'Создано',
+    'admin.fields.updatedAt': 'Обновлено',
+    'admin.fields.source': 'Источник',
+    'admin.fields.email': 'Email',
+    'admin.fields.name': 'Имя',
+    'admin.fields.phone': 'Телефон',
+    'admin.sources.presale': 'Пресейл',
+    'admin.sources.configurator_quote': 'Конфигуратор',
+    'admin.sources.partners': 'Партнеры',
+    'admin.sources.investors_deck': 'Инвесторы',
+    'admin.sources.customers_docs': 'Клиенты',
   },
 };
 

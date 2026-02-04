@@ -75,6 +75,11 @@
     requiredLabel={data.content.requestDocs.requiredLabel}
     invalidEmailLabel={data.content.requestDocs.invalidEmailLabel}
     storageKey={data.docsRequestDraftKey}
+    locale={data.locale}
+    sendingLabel={data.formLabels.sending}
+    submitErrorLabel={data.formLabels.error}
+    retryLabel={data.formLabels.retry}
+    referenceIdLabel={data.formLabels.referenceId}
   />
 
   <!-- Final CTA -->

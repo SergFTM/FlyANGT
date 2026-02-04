@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(npm run build:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(del \"c:\\\\Users\\\\user\\\\Desktop\\\\FlyANGT\\\\src\\\\routes\\\\migrate\\\\+page.ts\")",
+      "Bash(if not exist \"c:\\\\Users\\\\user\\\\Desktop\\\\FlyANGT\\\\docs\\\\qa\" mkdir \"c:\\\\Users\\\\user\\\\Desktop\\\\FlyANGT\\\\docs\\\\qa\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\user\\Desktop\\FlyANGT\\src\\routes\\workflow"

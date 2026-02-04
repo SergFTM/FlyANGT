@@ -5,7 +5,7 @@
    * Individual record card in the list view.
    */
 
-  import type { LeadRecord, RequestRecord } from '$lib/domain/types';
+  import type { LeadRecord, RequestRecord, WorkflowStatus } from '$lib/domain/types';
 
   interface Labels {
     id: string;
@@ -19,15 +19,20 @@
     [key: string]: string;
   }
 
+  interface StatusLabels {
+    [key: string]: string;
+  }
+
   interface Props {
     record: LeadRecord | RequestRecord;
     isSelected: boolean;
     labels: Labels;
     sourceLabels: SourceLabels;
+    statusLabels?: StatusLabels;
     onclick: () => void;
   }
 
-  let { record, isSelected, labels, sourceLabels, onclick }: Props = $props();
+  let { record, isSelected, labels, sourceLabels, statusLabels = {}, onclick }: Props = $props();
 
   function formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -43,6 +48,24 @@
   // Extract display fields based on record type
   const email = $derived(record.kind === 'lead' ? record.email : undefined);
   const name = $derived(record.kind === 'lead' ? record.name : undefined);
+
+  // Status color mapping
+  function getStatusColor(status: WorkflowStatus): string {
+    switch (status) {
+      case 'new':
+        return 'bg-blue-100 text-blue-700';
+      case 'reviewed':
+        return 'bg-yellow-100 text-yellow-700';
+      case 'contacted':
+        return 'bg-purple-100 text-purple-700';
+      case 'closed':
+        return 'bg-green-100 text-green-700';
+      case 'archived':
+        return 'bg-gray-100 text-gray-500';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  }
 </script>
 
 <button
@@ -54,9 +77,14 @@
 >
   <div class="flex items-start justify-between gap-2 mb-2">
     <code class="text-xs text-gray-500 font-mono truncate flex-1">{record.id}</code>
-    <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-700 whitespace-nowrap">
-      {sourceLabels[record.source] || record.source}
-    </span>
+    <div class="flex gap-1.5 flex-shrink-0">
+      <span class="px-2 py-0.5 text-xs font-medium rounded-full {getStatusColor(record.status)}">
+        {statusLabels[record.status] || record.status}
+      </span>
+      <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-700">
+        {sourceLabels[record.source] || record.source}
+      </span>
+    </div>
   </div>
 
   {#if email || name}

@@ -20,6 +20,10 @@
     [key: string]: string;
   }
 
+  interface StatusLabels {
+    [key: string]: string;
+  }
+
   interface EmptyLabels {
     title: string;
     text: string;
@@ -30,11 +34,12 @@
     selectedId: string | null;
     labels: Labels;
     sourceLabels: SourceLabels;
+    statusLabels?: StatusLabels;
     emptyLabels: EmptyLabels;
     onSelect: (id: string) => void;
   }
 
-  let { records, selectedId, labels, sourceLabels, emptyLabels, onSelect }: Props = $props();
+  let { records, selectedId, labels, sourceLabels, statusLabels = {}, emptyLabels, onSelect }: Props = $props();
 </script>
 
 {#if records.length === 0}
@@ -60,6 +65,7 @@
         isSelected={selectedId === record.id}
         {labels}
         {sourceLabels}
+        {statusLabels}
         onclick={() => onSelect(record.id)}
       />
     {/each}

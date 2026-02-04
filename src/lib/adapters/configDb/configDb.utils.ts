@@ -133,3 +133,31 @@ export async function getFileStats(filePath: string): Promise<{ mtime: Date } | 
     return null;
   }
 }
+
+/**
+ * Delete all JSON files in a directory (DEV ONLY)
+ * Used for backup overwrite restore.
+ * Returns the number of files deleted.
+ */
+export async function clearJsonDir(dirPath: string): Promise<number> {
+  try {
+    await ensureDir(dirPath);
+
+    const entries = await readdir(dirPath, { withFileTypes: true });
+    const jsonFiles = entries.filter(entry => entry.isFile() && entry.name.endsWith('.json'));
+
+    let deleted = 0;
+    for (const entry of jsonFiles) {
+      const filePath = `${dirPath}/${entry.name}`;
+      await unlink(filePath);
+      deleted++;
+    }
+
+    return deleted;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      return 0;
+    }
+    throw error;
+  }
+}

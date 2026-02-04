@@ -4,7 +4,7 @@
    *
    * Form for requesting documentation with localStorage persistence.
    * Respects prelaunch lock mode for draft storage.
-   * Submits to /api/leads with source='customers_docs'.
+   * Submits to /api/forms/submit with formId='customers_docs'.
    */
 
   import { prelaunchConfig } from '$config/prelaunch.config';
@@ -142,23 +142,22 @@
     submitting = true;
 
     try {
-      // Submit to API
-      const response = await fetch('/api/leads', {
+      // Submit to unified forms API
+      const response = await fetch('/api/forms/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          source: 'customers_docs',
+          formId: 'customers_docs',
           locale,
-          email,
-          name,
-          phone: phone || undefined,
-          country,
-          interest,
-          notes: notes || undefined,
-          meta: {
-            interestLabel: interestOptions.find(o => o.id === interest)?.label,
+          values: {
+            name,
+            email,
+            phone: phone || undefined,
+            country,
+            interest,
+            notes: notes || undefined,
           },
         }),
       });
@@ -166,7 +165,11 @@
       const result = await response.json();
 
       if (!response.ok || !result.ok) {
-        throw new Error(result.errors?.join(', ') || 'Submission failed');
+        // Handle field errors if returned
+        if (result.fieldErrors) {
+          errors = result.fieldErrors;
+        }
+        throw new Error(result.error || 'Submission failed');
       }
 
       // Store the submitted ID

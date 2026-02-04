@@ -5,7 +5,7 @@
  * Stores one JSON file per request in /src/data/db/requests/
  */
 
-import type { RequestRepository, ExtendedListParams } from '$lib/domain/repositories';
+import type { RequestRepository, ExtendedListParams, BulkUpsertResult } from '$lib/domain/repositories';
 import { writeError, readError, notFoundError } from '$lib/domain/repositories';
 import type {
   EntityId,
@@ -26,6 +26,7 @@ import {
   safeReadJson,
   listJsonFiles,
   deleteJsonFile,
+  clearJsonDir,
 } from './configDb.utils';
 
 /**
@@ -248,6 +249,62 @@ export class ConfigRequestRepository implements RequestRepository {
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown error';
       throw writeError(`Failed to delete request: ${message}`);
+    }
+  }
+
+  /**
+   * Upsert a request record (create if not exists, update if exists)
+   * Used for backup restore operations.
+   */
+  async upsert(record: RequestRecord): Promise<RequestRecord> {
+    const filePath = getRequestFilePath(record.id);
+    const existing = await this.getById(record.id);
+
+    // Normalize record to ensure all fields exist
+    const normalized = normalizeRecord(record);
+
+    try {
+      await safeWriteJson(filePath, normalized);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      throw writeError(`Failed to upsert request: ${message}`);
+    }
+
+    return normalized;
+  }
+
+  /**
+   * Bulk upsert multiple request records
+   * Used for backup restore operations.
+   */
+  async bulkUpsert(records: RequestRecord[]): Promise<BulkUpsertResult> {
+    let created = 0;
+    let updated = 0;
+
+    for (const record of records) {
+      const existing = await this.getById(record.id);
+      await this.upsert(record);
+
+      if (existing) {
+        updated++;
+      } else {
+        created++;
+      }
+    }
+
+    return { created, updated };
+  }
+
+  /**
+   * Clear all request records (DEV ONLY)
+   * Used for backup overwrite restore.
+   */
+  async clearAll(): Promise<void> {
+    try {
+      await clearJsonDir(getRequestsPath());
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      throw writeError(`Failed to clear requests: ${message}`);
     }
   }
 }

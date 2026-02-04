@@ -5,7 +5,7 @@
  * Stores one JSON file per lead in /src/data/db/leads/
  */
 
-import type { LeadRepository, ExtendedListParams } from '$lib/domain/repositories';
+import type { LeadRepository, ExtendedListParams, BulkUpsertResult } from '$lib/domain/repositories';
 import { writeError, readError, notFoundError } from '$lib/domain/repositories';
 import type {
   EntityId,
@@ -27,6 +27,7 @@ import {
   safeReadJson,
   listJsonFiles,
   deleteJsonFile,
+  clearJsonDir,
 } from './configDb.utils';
 
 /**
@@ -258,6 +259,62 @@ export class ConfigLeadRepository implements LeadRepository {
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown error';
       throw writeError(`Failed to delete lead: ${message}`);
+    }
+  }
+
+  /**
+   * Upsert a lead record (create if not exists, update if exists)
+   * Used for backup restore operations.
+   */
+  async upsert(record: LeadRecord): Promise<LeadRecord> {
+    const filePath = getLeadFilePath(record.id);
+    const existing = await this.getById(record.id);
+
+    // Normalize record to ensure all fields exist
+    const normalized = normalizeRecord(record);
+
+    try {
+      await safeWriteJson(filePath, normalized);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      throw writeError(`Failed to upsert lead: ${message}`);
+    }
+
+    return normalized;
+  }
+
+  /**
+   * Bulk upsert multiple lead records
+   * Used for backup restore operations.
+   */
+  async bulkUpsert(records: LeadRecord[]): Promise<BulkUpsertResult> {
+    let created = 0;
+    let updated = 0;
+
+    for (const record of records) {
+      const existing = await this.getById(record.id);
+      await this.upsert(record);
+
+      if (existing) {
+        updated++;
+      } else {
+        created++;
+      }
+    }
+
+    return { created, updated };
+  }
+
+  /**
+   * Clear all lead records (DEV ONLY)
+   * Used for backup overwrite restore.
+   */
+  async clearAll(): Promise<void> {
+    try {
+      await clearJsonDir(getLeadsPath());
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      throw writeError(`Failed to clear leads: ${message}`);
     }
   }
 }

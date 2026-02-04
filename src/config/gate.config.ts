@@ -94,6 +94,9 @@ export const gateConfig: GateConfig = {
       '/post-release',
       '/leads',
       '/admin',
+      '/migrate',
+      '/backup',
+      '/retention',
     ],
   },
 

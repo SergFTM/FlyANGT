@@ -1,0 +1,244 @@
+// =============================================================================
+// FlyANGT Prisma Schema Blueprint
+// =============================================================================
+//
+// This file is a BLUEPRINT for future Prisma/Postgres migration.
+// It is NOT used at runtime in the MVP.
+//
+// DO NOT add Prisma to package.json dependencies until migration begins.
+//
+// Current status: MVP uses file-based config DB
+// Future status: Prisma + Postgres
+//
+// To activate this schema:
+// 1. npm install prisma @prisma/client
+// 2. Set DATABASE_URL in .env
+// 3. npx prisma generate
+// 4. npx prisma migrate dev
+// 5. Run import script with seed.json from /migrate
+// 6. Switch adapter flag to 'prisma'
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Datasource Configuration
+// -----------------------------------------------------------------------------
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// Generator Configuration
+// -----------------------------------------------------------------------------
+generator client {
+  provider = "prisma-client-js"
+}
+
+// =============================================================================
+// Enums
+// =============================================================================
+
+/// Workflow status for leads and requests
+/// - new: freshly created
+/// - reviewed: admin has seen it
+/// - contacted: outreach has been made
+/// - closed: workflow complete
+/// - archived: removed from active view
+enum WorkflowStatus {
+  new
+  reviewed
+  contacted
+  closed
+  archived
+}
+
+/// Source of the submission
+/// Must match SubmissionSource type in $lib/domain/types.ts
+enum Source {
+  presale
+  configurator_quote
+  partners
+  investors_deck
+  customers_docs
+}
+
+/// Supported locales
+/// Must match EntityLocale type in $lib/domain/types.ts
+enum Locale {
+  en
+  ru
+}
+
+// =============================================================================
+// Core Models
+// =============================================================================
+
+/// Lead record - contact/interest submissions
+/// Maps to: LeadRecord in $lib/domain/types.ts
+/// File DB prefix: ld-
+model Lead {
+  id           String         @id // Preserve file DB IDs (ld-...)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  source       Source
+  locale       Locale?
+
+  // Workflow fields
+  status       WorkflowStatus @default(new)
+  lastActionAt DateTime?
+
+  // Lead-specific fields
+  email        String
+  name         String?
+  phone        String?
+  country      String?
+  company      String?
+  investorType String?
+  ticket       String?
+  interest     String?
+  notes        String?        // User-provided notes (not internal)
+  meta         Json?
+
+  // Relations
+  internalNotes LeadNote[]
+  tags          LeadTag[]
+
+  // Indexes for common queries
+  @@index([email])
+  @@index([source, status])
+  @@index([createdAt])
+}
+
+/// Request record - structured form submissions
+/// Maps to: RequestRecord in $lib/domain/types.ts
+/// File DB prefix: rq-
+model Request {
+  id           String         @id // Preserve file DB IDs (rq-...)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  source       Source
+  locale       Locale?
+
+  // Workflow fields
+  status       WorkflowStatus @default(new)
+  lastActionAt DateTime?
+
+  // Request-specific fields
+  payload      Json
+
+  // Relations
+  internalNotes RequestNote[]
+  tags          RequestTag[]
+
+  // Indexes for common queries
+  @@index([source, status])
+  @@index([createdAt])
+}
+
+// =============================================================================
+// Internal Notes (Normalized)
+// =============================================================================
+
+/// Internal note for leads (admin tracking)
+/// Maps to: InternalNote in $lib/domain/types.ts
+/// Normalized from embedded array in file DB
+model LeadNote {
+  id        String   @id // Preserve file DB note IDs (note-...)
+  leadId    String
+  createdAt DateTime @default(now())
+  author    String?
+  text      String
+
+  // Relation
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  // Indexes
+  @@index([leadId])
+  @@index([createdAt])
+}
+
+/// Internal note for requests (admin tracking)
+/// Maps to: InternalNote in $lib/domain/types.ts
+/// Normalized from embedded array in file DB
+model RequestNote {
+  id        String   @id // Preserve file DB note IDs (note-...)
+  requestId String
+  createdAt DateTime @default(now())
+  author    String?
+  text      String
+
+  // Relation
+  request   Request  @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  // Indexes
+  @@index([requestId])
+  @@index([createdAt])
+}
+
+// =============================================================================
+// Tags (Normalized)
+// =============================================================================
+
+/// Tag for leads
+/// Normalized from embedded array in file DB
+model LeadTag {
+  id     String @id // Generated: tag-lead-{leadId}-{index}
+  leadId String
+  value  String
+
+  // Relation
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  // Indexes and constraints
+  @@unique([leadId, value]) // Prevent duplicate tags per lead
+  @@index([leadId])
+  @@index([value])
+}
+
+/// Tag for requests
+/// Normalized from embedded array in file DB
+model RequestTag {
+  id        String  @id // Generated: tag-request-{requestId}-{index}
+  requestId String
+  value     String
+
+  // Relation
+  request   Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  // Indexes and constraints
+  @@unique([requestId, value]) // Prevent duplicate tags per request
+  @@index([requestId])
+  @@index([value])
+}
+
+// =============================================================================
+// Schema Notes
+// =============================================================================
+//
+// ID Strategy:
+// - Use String IDs to preserve existing file DB identifiers
+// - Leads: ld-{timestamp}-{random}
+// - Requests: rq-{timestamp}-{random}
+// - Notes: note-{timestamp}-{random}
+// - Tags: tag-{entityType}-{entityId}-{index}
+//
+// Timestamp Strategy:
+// - File DB uses ISO strings (e.g., "2024-01-15T10:30:00.000Z")
+// - Prisma uses DateTime, which Prisma Client converts automatically
+// - Import script should parse ISO strings to Date objects
+//
+// JSON Fields:
+// - meta (Lead): Optional structured metadata
+// - payload (Request): Required form submission data
+// - Prisma stores as JSONB in Postgres
+//
+// Cascade Deletes:
+// - Notes and tags are deleted when parent entity is deleted
+// - This matches file DB behavior (embedded arrays)
+//
+// Missing from file DB:
+// - No explicit indexes (file DB scans directory)
+// - No unique constraints on tags (handled in app logic)
+// - No foreign key enforcement (JSON files are standalone)
+//
+// =============================================================================

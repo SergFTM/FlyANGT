@@ -300,6 +300,22 @@ export const routes: RouteConfig[] = [
     isPublic: false,
     order: 1012,
   },
+  {
+    id: 'migrate',
+    path: '/migrate',
+    titleKey: 'migrate.title',
+    moduleId: null,
+    isPublic: false,
+    order: 1013,
+  },
+  {
+    id: 'backup',
+    path: '/backup',
+    titleKey: 'backup.title',
+    moduleId: null,
+    isPublic: false,
+    order: 1014,
+  },
 ];
 
 /**

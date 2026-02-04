@@ -53,7 +53,7 @@
         </ul>
       </div>
       <div>
-        <h5 class="font-semibold mb-3">Fintechme</h5>
+        <h5 class="font-semibold mb-3">{label('footer.company')}</h5>
         <p class="text-gray-400 text-sm">fintechme.pro</p>
       </div>
     </div>

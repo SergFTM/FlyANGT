@@ -51,6 +51,7 @@ export type TranslationKey =
   | 'cta.learnMore'
   // Footer
   | 'footer.disclaimer'
+  | 'footer.company'
   // Common
   | 'common.comingSoon'
   | 'common.moduleDisabled'
@@ -1095,7 +1096,142 @@ export type TranslationKey =
   | 'admin.sources.configurator_quote'
   | 'admin.sources.partners'
   | 'admin.sources.investors_deck'
-  | 'admin.sources.customers_docs';
+  | 'admin.sources.customers_docs'
+  // Admin workflow status
+  | 'admin.status.label'
+  | 'admin.status.new'
+  | 'admin.status.reviewed'
+  | 'admin.status.contacted'
+  | 'admin.status.closed'
+  | 'admin.status.archived'
+  | 'admin.actions.saveStatus'
+  | 'admin.actions.addNote'
+  | 'admin.actions.archiveRecord'
+  | 'admin.notes.title'
+  | 'admin.notes.empty'
+  | 'admin.notes.placeholder'
+  | 'admin.messages.saved'
+  | 'admin.messages.error'
+  // Migration Prep
+  | 'migrate.title'
+  | 'migrate.subtitle'
+  | 'migrate.notice.devOnly'
+  | 'migrate.section.export.title'
+  | 'migrate.section.seed.title'
+  | 'migrate.section.map.title'
+  | 'migrate.section.validation.title'
+  | 'migrate.actions.downloadRaw'
+  | 'migrate.actions.downloadSeed'
+  | 'migrate.actions.downloadMapJson'
+  | 'migrate.actions.downloadMapMd'
+  | 'migrate.actions.downloadValidation'
+  | 'migrate.actions.copy'
+  | 'migrate.actions.copyDone'
+  | 'migrate.summary.leadsCount'
+  | 'migrate.summary.requestsCount'
+  | 'migrate.summary.notesCount'
+  | 'migrate.summary.tagsCount'
+  | 'migrate.validation.title'
+  | 'migrate.validation.invalidEmails'
+  | 'migrate.validation.duplicates'
+  | 'migrate.validation.missingFields'
+  | 'migrate.validation.invalidStatuses'
+  | 'migrate.validation.oversizedNotes'
+  | 'migrate.validation.warnings'
+  | 'migrate.validation.passed'
+  // Storage mode
+  | 'storage.mode.label'
+  | 'storage.mode.config'
+  | 'storage.mode.prisma'
+  // Backup
+  | 'backup.title'
+  | 'backup.subtitle'
+  | 'backup.notice.devOnly'
+  | 'backup.section.create.title'
+  | 'backup.section.restore.title'
+  | 'backup.actions.create'
+  | 'backup.actions.download'
+  | 'backup.actions.copy'
+  | 'backup.actions.validate'
+  | 'backup.actions.dryRun'
+  | 'backup.actions.applyMerge'
+  | 'backup.actions.applyOverwrite'
+  | 'backup.actions.copyDone'
+  | 'backup.fields.restoreMode'
+  | 'backup.fields.pasteJsonPlaceholder'
+  | 'backup.summary.counts'
+  | 'backup.report.created'
+  | 'backup.report.updated'
+  | 'backup.report.deleted'
+  | 'backup.report.errors'
+  | 'backup.errors.tooLarge'
+  | 'backup.errors.invalidJson'
+  | 'backup.mode.merge'
+  | 'backup.mode.overwrite'
+  | 'backup.warning.overwrite'
+  // Retention
+  | 'retention.title'
+  | 'retention.subtitle'
+  | 'retention.notice.devOnly'
+  | 'retention.actions.dryRun'
+  | 'retention.actions.apply'
+  | 'retention.fields.days'
+  | 'retention.fields.includeNew'
+  | 'retention.report.title'
+  | 'retention.report.eligibleCount'
+  | 'retention.report.bySource'
+  | 'retention.report.byStatus'
+  | 'retention.report.byAge'
+  | 'retention.messages.applied'
+  | 'retention.messages.capped'
+  | 'retention.errors.tooMany'
+  | 'retention.bucket.b0_7'
+  | 'retention.bucket.b8_30'
+  | 'retention.bucket.b31_90'
+  | 'retention.bucket.b90'
+  // Admin - Retention
+  | 'admin.retention.title'
+  | 'admin.retention.openTool'
+  | 'admin.retention.daysLabel'
+  | 'admin.retention.preview'
+  | 'admin.retention.apply'
+  // Forms - Unified Submit
+  | 'forms.errors.unknownForm'
+  | 'forms.errors.validationFailed'
+  | 'forms.errors.serverError'
+  | 'forms.errors.invalidBody'
+  | 'forms.errors.missingFormId'
+  | 'forms.errors.invalidLocale'
+  | 'forms.errors.missingValues'
+  | 'forms.submit.success'
+  | 'forms.submit.failed'
+  | 'forms.validation.required'
+  | 'forms.validation.invalidEmail'
+  // Forms - Customers Docs
+  | 'forms.customersDocs.title'
+  | 'forms.customersDocs.description'
+  | 'forms.customersDocs.fields.name'
+  | 'forms.customersDocs.fields.email'
+  | 'forms.customersDocs.fields.phone'
+  | 'forms.customersDocs.fields.country'
+  | 'forms.customersDocs.fields.interest'
+  | 'forms.customersDocs.fields.notes'
+  | 'forms.customersDocs.interest.ownership'
+  | 'forms.customersDocs.interest.charter'
+  | 'forms.customersDocs.interest.maintenance'
+  | 'forms.customersDocs.interest.other'
+  | 'forms.customersDocs.submit'
+  | 'forms.customersDocs.successTitle'
+  | 'forms.customersDocs.successText'
+  // Forms - Anti-spam
+  | 'forms.errors.tooLarge'
+  | 'forms.errors.honeypot'
+  | 'forms.errors.rateLimited'
+  | 'forms.errors.banned'
+  | 'forms.errors.cooldown'
+  | 'forms.cooldown.waitPrefix'
+  | 'forms.cooldown.seconds'
+  | 'forms.honeypot.label';
 
 /**
  * Translation dictionary
@@ -1131,6 +1267,7 @@ export const translations: Record<Locale, Record<TranslationKey, string>> = {
     'cta.learnMore': 'Learn More',
     // Footer
     'footer.disclaimer': 'FlyANGT is a digital platform for aviation coordination. Participation does not constitute investment advice.',
+    'footer.company': 'Fintechme',
     // Common
     'common.comingSoon': 'Coming Soon',
     'common.moduleDisabled': 'This module is not available yet. Please check back later.',
@@ -2189,6 +2326,148 @@ export const translations: Record<Locale, Record<TranslationKey, string>> = {
     'admin.sources.partners': 'Partners',
     'admin.sources.investors_deck': 'Investors Deck',
     'admin.sources.customers_docs': 'Customers Docs',
+    // Admin workflow status
+    'admin.status.label': 'Status',
+    'admin.status.new': 'New',
+    'admin.status.reviewed': 'Reviewed',
+    'admin.status.contacted': 'Contacted',
+    'admin.status.closed': 'Closed',
+    'admin.status.archived': 'Archived',
+    'admin.actions.saveStatus': 'Save',
+    'admin.actions.addNote': 'Add Note',
+    'admin.actions.archiveRecord': 'Archive',
+    'admin.notes.title': 'Internal Notes',
+    'admin.notes.empty': 'No notes yet',
+    'admin.notes.placeholder': 'Add a note...',
+    'admin.messages.saved': 'Saved',
+    'admin.messages.error': 'Error saving',
+    // Migration Prep
+    'migrate.title': 'Migration Prep',
+    'migrate.subtitle': 'Export data for Prisma/Postgres migration',
+    'migrate.notice.devOnly': 'Dev Only: This page is not available in production.',
+    'migrate.section.export.title': 'Raw Export',
+    'migrate.section.seed.title': 'Seed-Ready Export',
+    'migrate.section.map.title': 'Migration Map',
+    'migrate.section.validation.title': 'Data Validation',
+    'migrate.actions.downloadRaw': 'Download Raw JSON',
+    'migrate.actions.downloadSeed': 'Download Seed JSON',
+    'migrate.actions.downloadMapJson': 'Download Map JSON',
+    'migrate.actions.downloadMapMd': 'Download Map Markdown',
+    'migrate.actions.downloadValidation': 'Download Validation Report',
+    'migrate.actions.copy': 'Copy',
+    'migrate.actions.copyDone': 'Copied!',
+    'migrate.summary.leadsCount': 'Leads',
+    'migrate.summary.requestsCount': 'Requests',
+    'migrate.summary.notesCount': 'Internal Notes',
+    'migrate.summary.tagsCount': 'Tags',
+    'migrate.validation.title': 'Validation Results',
+    'migrate.validation.invalidEmails': 'Invalid Emails',
+    'migrate.validation.duplicates': 'Duplicate Emails',
+    'migrate.validation.missingFields': 'Missing Required Fields',
+    'migrate.validation.invalidStatuses': 'Invalid Statuses',
+    'migrate.validation.oversizedNotes': 'Oversized Notes',
+    'migrate.validation.warnings': 'Warnings',
+    'migrate.validation.passed': 'All checks passed',
+
+    // Storage mode
+    'storage.mode.label': 'Storage',
+    'storage.mode.config': 'File DB',
+    'storage.mode.prisma': 'Prisma',
+
+    // Backup
+    'backup.title': 'Backup & Restore',
+    'backup.subtitle': 'Create and restore data backups',
+    'backup.notice.devOnly': 'Dev Only: This page is not available in production.',
+    'backup.section.create.title': 'Create Backup',
+    'backup.section.restore.title': 'Restore from Backup',
+    'backup.actions.create': 'Create Backup',
+    'backup.actions.download': 'Download JSON',
+    'backup.actions.copy': 'Copy JSON',
+    'backup.actions.validate': 'Validate',
+    'backup.actions.dryRun': 'Dry Run',
+    'backup.actions.applyMerge': 'Apply Merge',
+    'backup.actions.applyOverwrite': 'Apply Overwrite',
+    'backup.actions.copyDone': 'Copied!',
+    'backup.fields.restoreMode': 'Restore Mode',
+    'backup.fields.pasteJsonPlaceholder': 'Paste backup JSON here...',
+    'backup.summary.counts': 'Record Counts',
+    'backup.report.created': 'Created',
+    'backup.report.updated': 'Updated',
+    'backup.report.deleted': 'Deleted',
+    'backup.report.errors': 'Errors',
+    'backup.errors.tooLarge': 'File too large. Maximum size is 2MB.',
+    'backup.errors.invalidJson': 'Invalid JSON format.',
+    'backup.mode.merge': 'Merge (upsert by ID)',
+    'backup.mode.overwrite': 'Overwrite (clear all first)',
+    'backup.warning.overwrite': 'Warning: Overwrite mode will delete all existing data before restoring.',
+
+    // Retention
+    'retention.title': 'Retention & Archiving',
+    'retention.subtitle': 'Archive old records based on age thresholds',
+    'retention.notice.devOnly': 'Dev Only: This tool is not available in production.',
+    'retention.actions.dryRun': 'Preview',
+    'retention.actions.apply': 'Archive Now',
+    'retention.fields.days': 'Older than (days)',
+    'retention.fields.includeNew': 'Include "new" status',
+    'retention.report.title': 'Retention Report',
+    'retention.report.eligibleCount': 'Eligible for archiving',
+    'retention.report.bySource': 'By Source',
+    'retention.report.byStatus': 'By Status',
+    'retention.report.byAge': 'By Age',
+    'retention.messages.applied': 'Successfully archived {count} records.',
+    'retention.messages.capped': 'Results capped at {max} records. Narrow your criteria.',
+    'retention.errors.tooMany': 'Too many records ({count}). Maximum is {max}. Use stricter filters.',
+    'retention.bucket.b0_7': '0-7 days',
+    'retention.bucket.b8_30': '8-30 days',
+    'retention.bucket.b31_90': '31-90 days',
+    'retention.bucket.b90': '90+ days',
+
+    // Admin - Retention
+    'admin.retention.title': 'Retention',
+    'admin.retention.openTool': 'Open Retention Tool',
+    'admin.retention.daysLabel': 'Archive older than',
+    'admin.retention.preview': 'Preview',
+    'admin.retention.apply': 'Apply',
+
+    // Forms - Unified Submit
+    'forms.errors.unknownForm': 'Unknown form',
+    'forms.errors.validationFailed': 'Validation failed',
+    'forms.errors.serverError': 'Server error',
+    'forms.errors.invalidBody': 'Invalid request body',
+    'forms.errors.missingFormId': 'Missing form ID',
+    'forms.errors.invalidLocale': 'Invalid locale',
+    'forms.errors.missingValues': 'Missing form values',
+    'forms.submit.success': 'Submitted successfully',
+    'forms.submit.failed': 'Submission failed',
+    'forms.validation.required': 'This field is required',
+    'forms.validation.invalidEmail': 'Invalid email address',
+
+    // Forms - Customers Docs
+    'forms.customersDocs.title': 'Request Documentation',
+    'forms.customersDocs.description': 'Fill in the form below to request documentation.',
+    'forms.customersDocs.fields.name': 'Full Name',
+    'forms.customersDocs.fields.email': 'Email',
+    'forms.customersDocs.fields.phone': 'Phone',
+    'forms.customersDocs.fields.country': 'Country',
+    'forms.customersDocs.fields.interest': 'Interest',
+    'forms.customersDocs.fields.notes': 'Additional Notes',
+    'forms.customersDocs.interest.ownership': 'Aircraft Ownership',
+    'forms.customersDocs.interest.charter': 'Charter Services',
+    'forms.customersDocs.interest.maintenance': 'Maintenance',
+    'forms.customersDocs.interest.other': 'Other',
+    'forms.customersDocs.submit': 'Submit Request',
+    'forms.customersDocs.successTitle': 'Request Submitted',
+    'forms.customersDocs.successText': 'We will contact you shortly.',
+
+    // Forms - Anti-spam
+    'forms.errors.tooLarge': 'Request too large',
+    'forms.errors.honeypot': 'Spam detected',
+    'forms.errors.rateLimited': 'Too many requests. Please try again later.',
+    'forms.errors.banned': 'Temporarily blocked. Please try again later.',
+    'forms.errors.cooldown': 'Please wait before submitting again',
+    'forms.cooldown.waitPrefix': 'Please wait',
+    'forms.cooldown.seconds': '{n} seconds',
+    'forms.honeypot.label': 'Company',
   },
   ru: {
     // Navigation
@@ -2220,6 +2499,7 @@ export const translations: Record<Locale, Record<TranslationKey, string>> = {
     'cta.learnMore': 'Узнать больше',
     // Footer
     'footer.disclaimer': 'FlyANGT: цифровая платформа для координации в авиации. Участие не является инвестиционной рекомендацией.',
+    'footer.company': 'Fintechme',
     // Common
     'common.comingSoon': 'Скоро',
     'common.moduleDisabled': 'Этот модуль пока недоступен. Пожалуйста, загляните позже.',
@@ -3278,6 +3558,148 @@ export const translations: Record<Locale, Record<TranslationKey, string>> = {
     'admin.sources.partners': 'Партнеры',
     'admin.sources.investors_deck': 'Инвесторы',
     'admin.sources.customers_docs': 'Клиенты',
+    // Admin workflow status
+    'admin.status.label': 'Статус',
+    'admin.status.new': 'Новый',
+    'admin.status.reviewed': 'Просмотрен',
+    'admin.status.contacted': 'Связались',
+    'admin.status.closed': 'Закрыт',
+    'admin.status.archived': 'В архиве',
+    'admin.actions.saveStatus': 'Сохранить',
+    'admin.actions.addNote': 'Добавить заметку',
+    'admin.actions.archiveRecord': 'В архив',
+    'admin.notes.title': 'Внутренние заметки',
+    'admin.notes.empty': 'Заметок пока нет',
+    'admin.notes.placeholder': 'Добавить заметку...',
+    'admin.messages.saved': 'Сохранено',
+    'admin.messages.error': 'Ошибка сохранения',
+    // Migration Prep
+    'migrate.title': 'Подготовка к миграции',
+    'migrate.subtitle': 'Экспорт данных для миграции на Prisma/Postgres',
+    'migrate.notice.devOnly': 'Только для разработки: эта страница недоступна в продакшене.',
+    'migrate.section.export.title': 'Сырой экспорт',
+    'migrate.section.seed.title': 'Экспорт для сидирования',
+    'migrate.section.map.title': 'Карта миграции',
+    'migrate.section.validation.title': 'Валидация данных',
+    'migrate.actions.downloadRaw': 'Скачать сырой JSON',
+    'migrate.actions.downloadSeed': 'Скачать Seed JSON',
+    'migrate.actions.downloadMapJson': 'Скачать карту JSON',
+    'migrate.actions.downloadMapMd': 'Скачать карту Markdown',
+    'migrate.actions.downloadValidation': 'Скачать отчет валидации',
+    'migrate.actions.copy': 'Копировать',
+    'migrate.actions.copyDone': 'Скопировано!',
+    'migrate.summary.leadsCount': 'Лиды',
+    'migrate.summary.requestsCount': 'Заявки',
+    'migrate.summary.notesCount': 'Внутренние заметки',
+    'migrate.summary.tagsCount': 'Теги',
+    'migrate.validation.title': 'Результаты валидации',
+    'migrate.validation.invalidEmails': 'Неверные email',
+    'migrate.validation.duplicates': 'Дубликаты email',
+    'migrate.validation.missingFields': 'Отсутствуют обязательные поля',
+    'migrate.validation.invalidStatuses': 'Неверные статусы',
+    'migrate.validation.oversizedNotes': 'Слишком длинные заметки',
+    'migrate.validation.warnings': 'Предупреждения',
+    'migrate.validation.passed': 'Все проверки пройдены',
+
+    // Storage mode
+    'storage.mode.label': 'Хранилище',
+    'storage.mode.config': 'Файловая БД',
+    'storage.mode.prisma': 'Prisma',
+
+    // Backup
+    'backup.title': 'Резервное копирование',
+    'backup.subtitle': 'Создание и восстановление резервных копий данных',
+    'backup.notice.devOnly': 'Только для разработки: эта страница недоступна в продакшене.',
+    'backup.section.create.title': 'Создать резервную копию',
+    'backup.section.restore.title': 'Восстановить из копии',
+    'backup.actions.create': 'Создать копию',
+    'backup.actions.download': 'Скачать JSON',
+    'backup.actions.copy': 'Копировать JSON',
+    'backup.actions.validate': 'Проверить',
+    'backup.actions.dryRun': 'Пробный запуск',
+    'backup.actions.applyMerge': 'Применить слияние',
+    'backup.actions.applyOverwrite': 'Применить перезапись',
+    'backup.actions.copyDone': 'Скопировано!',
+    'backup.fields.restoreMode': 'Режим восстановления',
+    'backup.fields.pasteJsonPlaceholder': 'Вставьте JSON резервной копии...',
+    'backup.summary.counts': 'Количество записей',
+    'backup.report.created': 'Создано',
+    'backup.report.updated': 'Обновлено',
+    'backup.report.deleted': 'Удалено',
+    'backup.report.errors': 'Ошибки',
+    'backup.errors.tooLarge': 'Файл слишком большой. Максимальный размер 2МБ.',
+    'backup.errors.invalidJson': 'Неверный формат JSON.',
+    'backup.mode.merge': 'Слияние (upsert по ID)',
+    'backup.mode.overwrite': 'Перезапись (сначала очистить все)',
+    'backup.warning.overwrite': 'Внимание: режим перезаписи удалит все существующие данные перед восстановлением.',
+
+    // Retention
+    'retention.title': 'Хранение и архивация',
+    'retention.subtitle': 'Архивирование старых записей по порогу возраста',
+    'retention.notice.devOnly': 'Только для разработки: этот инструмент недоступен в продакшене.',
+    'retention.actions.dryRun': 'Предпросмотр',
+    'retention.actions.apply': 'Архивировать',
+    'retention.fields.days': 'Старше (дней)',
+    'retention.fields.includeNew': 'Включить статус "new"',
+    'retention.report.title': 'Отчёт по хранению',
+    'retention.report.eligibleCount': 'Подлежит архивации',
+    'retention.report.bySource': 'По источнику',
+    'retention.report.byStatus': 'По статусу',
+    'retention.report.byAge': 'По возрасту',
+    'retention.messages.applied': 'Успешно архивировано {count} записей.',
+    'retention.messages.capped': 'Результаты ограничены до {max} записей. Сузьте критерии.',
+    'retention.errors.tooMany': 'Слишком много записей ({count}). Максимум {max}. Используйте более строгие фильтры.',
+    'retention.bucket.b0_7': '0-7 дней',
+    'retention.bucket.b8_30': '8-30 дней',
+    'retention.bucket.b31_90': '31-90 дней',
+    'retention.bucket.b90': '90+ дней',
+
+    // Admin - Retention
+    'admin.retention.title': 'Хранение',
+    'admin.retention.openTool': 'Открыть инструмент хранения',
+    'admin.retention.daysLabel': 'Архивировать старше',
+    'admin.retention.preview': 'Предпросмотр',
+    'admin.retention.apply': 'Применить',
+
+    // Forms - Unified Submit
+    'forms.errors.unknownForm': 'Неизвестная форма',
+    'forms.errors.validationFailed': 'Ошибка валидации',
+    'forms.errors.serverError': 'Ошибка сервера',
+    'forms.errors.invalidBody': 'Неверное тело запроса',
+    'forms.errors.missingFormId': 'Отсутствует ID формы',
+    'forms.errors.invalidLocale': 'Неверная локаль',
+    'forms.errors.missingValues': 'Отсутствуют значения формы',
+    'forms.submit.success': 'Успешно отправлено',
+    'forms.submit.failed': 'Ошибка отправки',
+    'forms.validation.required': 'Это поле обязательно',
+    'forms.validation.invalidEmail': 'Неверный email адрес',
+
+    // Forms - Customers Docs
+    'forms.customersDocs.title': 'Запрос документации',
+    'forms.customersDocs.description': 'Заполните форму ниже для запроса документации.',
+    'forms.customersDocs.fields.name': 'Полное имя',
+    'forms.customersDocs.fields.email': 'Email',
+    'forms.customersDocs.fields.phone': 'Телефон',
+    'forms.customersDocs.fields.country': 'Страна',
+    'forms.customersDocs.fields.interest': 'Интерес',
+    'forms.customersDocs.fields.notes': 'Дополнительные заметки',
+    'forms.customersDocs.interest.ownership': 'Владение самолётом',
+    'forms.customersDocs.interest.charter': 'Чартерные услуги',
+    'forms.customersDocs.interest.maintenance': 'Техобслуживание',
+    'forms.customersDocs.interest.other': 'Другое',
+    'forms.customersDocs.submit': 'Отправить запрос',
+    'forms.customersDocs.successTitle': 'Запрос отправлен',
+    'forms.customersDocs.successText': 'Мы свяжемся с вами в ближайшее время.',
+
+    // Forms - Anti-spam
+    'forms.errors.tooLarge': 'Запрос слишком большой',
+    'forms.errors.honeypot': 'Обнаружен спам',
+    'forms.errors.rateLimited': 'Слишком много запросов. Повторите позже.',
+    'forms.errors.banned': 'Временно заблокировано. Повторите позже.',
+    'forms.errors.cooldown': 'Подождите перед повторной отправкой',
+    'forms.cooldown.waitPrefix': 'Подождите',
+    'forms.cooldown.seconds': '{n} секунд',
+    'forms.honeypot.label': 'Компания',
   },
 };
 

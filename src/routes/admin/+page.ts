@@ -10,7 +10,14 @@ import { isLocaleSupported, t, type Locale } from '$config/i18n.config';
 import { gateConfig } from '$config/gate.config';
 import { adminConfig, isValidTab, getValidLimit, type AdminTabId } from '$config/admin.config';
 import { assertDevToolAllowed } from '$lib/devtools/guard';
-import { isValidSource, type SubmissionSource } from '$lib/domain/types';
+import { isValidSource, isValidStatus, type SubmissionSource, type WorkflowStatus } from '$lib/domain/types';
+import { getStorageMode, type StorageMode } from '$config/storage.config';
+import { retentionConfig } from '$config/retention.config';
+
+/**
+ * All workflow statuses for filter options
+ */
+const WORKFLOW_STATUSES: WorkflowStatus[] = ['new', 'reviewed', 'contacted', 'closed', 'archived'];
 
 export const load: PageLoad = ({ url }) => {
   // Unified dev tools guard
@@ -27,6 +34,9 @@ export const load: PageLoad = ({ url }) => {
   const sourceParam = url.searchParams.get('source');
   const source: SubmissionSource | '' = sourceParam && isValidSource(sourceParam) ? sourceParam : '';
 
+  const statusParam = url.searchParams.get('status');
+  const status: WorkflowStatus | '' = statusParam && isValidStatus(statusParam) ? statusParam : '';
+
   const searchParam = url.searchParams.get('q') || '';
 
   const limitParam = url.searchParams.get('limit');
@@ -38,16 +48,28 @@ export const load: PageLoad = ({ url }) => {
     label: t(`admin.sources.${s}` as keyof typeof import('$config/i18n.config').translations.en, locale),
   }));
 
+  // Build status options with translations
+  const statusOptions = WORKFLOW_STATUSES.map(s => ({
+    id: s,
+    label: t(`admin.status.${s}` as keyof typeof import('$config/i18n.config').translations.en, locale),
+  }));
+
+  // Get current storage mode for indicator
+  const storageMode: StorageMode = getStorageMode();
+
   return {
     locale,
     config: adminConfig,
+    storageMode,
     filters: {
       tab,
       source,
+      status,
       search: searchParam,
       limit,
     },
     sourceOptions,
+    statusOptions,
     labels: {
       title: t('admin.title', locale),
       subtitle: t('admin.subtitle', locale),
@@ -60,6 +82,7 @@ export const load: PageLoad = ({ url }) => {
         source: t('admin.filters.source', locale),
         search: t('admin.filters.search', locale),
         limit: t('admin.filters.limit', locale),
+        status: t('admin.status.label', locale),
         all: locale === 'ru' ? 'Все' : 'All',
       },
       actions: {
@@ -68,6 +91,9 @@ export const load: PageLoad = ({ url }) => {
         copyDone: t('admin.actions.copyDone', locale),
         openApiLeads: t('admin.actions.openApiLeads', locale),
         openApiRequests: t('admin.actions.openApiRequests', locale),
+        saveStatus: t('admin.actions.saveStatus', locale),
+        addNote: t('admin.actions.addNote', locale),
+        archiveRecord: t('admin.actions.archiveRecord', locale),
       },
       list: {
         emptyTitle: t('admin.list.empty.title', locale),
@@ -92,6 +118,37 @@ export const load: PageLoad = ({ url }) => {
           t(`admin.sources.${s}` as keyof typeof import('$config/i18n.config').translations.en, locale),
         ])
       ),
+      statuses: Object.fromEntries(
+        WORKFLOW_STATUSES.map(s => [
+          s,
+          t(`admin.status.${s}` as keyof typeof import('$config/i18n.config').translations.en, locale),
+        ])
+      ),
+      notes: {
+        title: t('admin.notes.title', locale),
+        empty: t('admin.notes.empty', locale),
+        placeholder: t('admin.notes.placeholder', locale),
+      },
+      messages: {
+        saved: t('admin.messages.saved', locale),
+        error: t('admin.messages.error', locale),
+      },
+      storage: {
+        label: t('storage.mode.label', locale),
+        config: t('storage.mode.config', locale),
+        prisma: t('storage.mode.prisma', locale),
+      },
+      retention: {
+        title: t('admin.retention.title', locale),
+        openTool: t('admin.retention.openTool', locale),
+        daysLabel: t('admin.retention.daysLabel', locale),
+        preview: t('admin.retention.preview', locale),
+        apply: t('admin.retention.apply', locale),
+      },
+    },
+    retentionConfig: {
+      enabled: retentionConfig.enabled,
+      defaultDays: retentionConfig.defaults.days,
     },
   };
 };

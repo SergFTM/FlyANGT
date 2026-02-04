@@ -26,6 +26,14 @@ export interface ExtendedListParams extends ListParams {
 }
 
 /**
+ * Bulk upsert result
+ */
+export interface BulkUpsertResult {
+  created: number;
+  updated: number;
+}
+
+/**
  * Lead repository interface
  */
 export interface LeadRepository {
@@ -58,6 +66,25 @@ export interface LeadRepository {
    * Delete a lead by ID (for dev/admin purposes)
    */
   delete(id: EntityId): Promise<boolean>;
+
+  /**
+   * Upsert a lead record (create if not exists, update if exists)
+   * Used for backup restore operations.
+   */
+  upsert(record: LeadRecord): Promise<LeadRecord>;
+
+  /**
+   * Bulk upsert multiple lead records
+   * Used for backup restore operations.
+   */
+  bulkUpsert(records: LeadRecord[]): Promise<BulkUpsertResult>;
+
+  /**
+   * Clear all lead records (DEV ONLY)
+   * Used for backup overwrite restore.
+   * Optional - may not be implemented in all adapters.
+   */
+  clearAll?(): Promise<void>;
 }
 
 /**
@@ -93,6 +120,25 @@ export interface RequestRepository {
    * Delete a request by ID (for dev/admin purposes)
    */
   delete(id: EntityId): Promise<boolean>;
+
+  /**
+   * Upsert a request record (create if not exists, update if exists)
+   * Used for backup restore operations.
+   */
+  upsert(record: RequestRecord): Promise<RequestRecord>;
+
+  /**
+   * Bulk upsert multiple request records
+   * Used for backup restore operations.
+   */
+  bulkUpsert(records: RequestRecord[]): Promise<BulkUpsertResult>;
+
+  /**
+   * Clear all request records (DEV ONLY)
+   * Used for backup overwrite restore.
+   * Optional - may not be implemented in all adapters.
+   */
+  clearAll?(): Promise<void>;
 }
 
 /**

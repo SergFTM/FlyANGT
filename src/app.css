@@ -8,6 +8,45 @@
 @import "tailwindcss";
 @import "./lib/styles/tokens.css";
 
+/* ============================
+   ANG Crown Landing — дизайн-система
+   ============================ */
+:root {
+  --color-bg-dark: #0a1628;
+  --color-bg-light: #f7f4ef;
+  --color-bg-white: #ffffff;
+  --color-gold: #c6a36b;
+  --color-gold-dim: rgba(198,163,107,0.4);
+  --color-text-dark: #1a2a3a;
+  --color-text-body: #555555;
+  --color-text-muted: #999999;
+  --color-text-light: rgba(255,255,255,0.75);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Cormorant Garamond', serif;
+  --font-ui: 'Montserrat', sans-serif;
+}
+
+/* Глобальный reset для лендинга */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Анимация reveal при скролле */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Global typography */
 body {
   @apply text-gray-900 bg-white;

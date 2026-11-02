@@ -1,0 +1,52 @@
+schema_version: 1.0.0
+project_id: flyangt
+display_name: FlyANGT
+repository:
+  url: https://github.com/SergFTM/FlyANGT.git
+  default_branch: main
+stack:
+- node
+- svelte
+- tailwind
+- vite
+knowledge:
+  namespaces:
+  - flyangt
+  retrieval: lexical
+tests:
+  typecheck: npm run check
+policies:
+  production_access: false
+  approval_required_for:
+  - merge
+  - deploy
+  - database_migration
+  - financial_action
+  network_policy: restricted
+budget_defaults:
+  max_attempts: 2
+  max_wall_seconds: 1800
+  max_metered_usd: 5.0
+roles:
+  admin:
+  - task-contract-author
+  - context-evidence-builder
+  - execution-dag-planner
+  - capability-model-router
+  technology:
+  - engineering-task-delivery
+  - worktree-delivery-operator
+  - cross-agent-handoff
+  commercial:
+  - commercial-task-delivery
+  - cross-agent-handoff
+  quality:
+  - quality-gate-auditor
+  - evaluation-suite-designer
+  - trace-failure-analyst
+  local_supervisor:
+  - trace-failure-analyst
+  - cross-agent-handoff
+  maintainer:
+  - skill-learning-curator
+  - skill-adaptation-architect

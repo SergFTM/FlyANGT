@@ -21,3 +21,45 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# --- служебные каталоги агентских инструментов (фабрика приложений) ---
+# Локальное состояние Claude Code — у каждой машины своё.
+.claude/settings.local.json
+.claude/worktrees/
+.claude/scheduled_tasks.lock
+.playwright-mcp/
+
+# Производное состояние выкатки agent-factory.
+# project.yaml и roles.yaml НЕ исключаются: они описывают сам проект.
+agent-factory/skill-versions.yaml
+agent-factory/config-manifest.json
+
+# Копии 13 универсальных скиллов (источник — agent-factory-universal-skills).
+# Поимённо, а не папкой: у части проектов рядом лежат СВОИ скиллы.
+.agents/skills/capability-model-router/
+.claude/skills/capability-model-router/
+.agents/skills/commercial-task-delivery/
+.claude/skills/commercial-task-delivery/
+.agents/skills/context-evidence-builder/
+.claude/skills/context-evidence-builder/
+.agents/skills/cross-agent-handoff/
+.claude/skills/cross-agent-handoff/
+.agents/skills/engineering-task-delivery/
+.claude/skills/engineering-task-delivery/
+.agents/skills/evaluation-suite-designer/
+.claude/skills/evaluation-suite-designer/
+.agents/skills/execution-dag-planner/
+.claude/skills/execution-dag-planner/
+.agents/skills/quality-gate-auditor/
+.claude/skills/quality-gate-auditor/
+.agents/skills/skill-adaptation-architect/
+.claude/skills/skill-adaptation-architect/
+.agents/skills/skill-learning-curator/
+.claude/skills/skill-learning-curator/
+.agents/skills/task-contract-author/
+.claude/skills/task-contract-author/
+.agents/skills/trace-failure-analyst/
+.claude/skills/trace-failure-analyst/
+.agents/skills/worktree-delivery-operator/
+.claude/skills/worktree-delivery-operator/
+

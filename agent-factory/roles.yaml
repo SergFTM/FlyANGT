@@ -1,0 +1,23 @@
+roles:
+  admin:
+  - task-contract-author
+  - context-evidence-builder
+  - execution-dag-planner
+  - capability-model-router
+  technology:
+  - engineering-task-delivery
+  - worktree-delivery-operator
+  - cross-agent-handoff
+  commercial:
+  - commercial-task-delivery
+  - cross-agent-handoff
+  quality:
+  - quality-gate-auditor
+  - evaluation-suite-designer
+  - trace-failure-analyst
+  local_supervisor:
+  - trace-failure-analyst
+  - cross-agent-handoff
+  maintainer:
+  - skill-learning-curator
+  - skill-adaptation-architect
